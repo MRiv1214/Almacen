@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using Almacen.Login;
+using UI.Login;
+using UI.Menu;
 using Almacen.Models;
-using Almacen.Menu;
 
 IUser? user;
 do

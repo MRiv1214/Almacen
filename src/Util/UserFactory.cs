@@ -1,6 +1,6 @@
 using Almacen.Models;
 
-namespace Almacen.UserFactory;
+namespace Util.UserFactory;
 // Implementation of IUserFactory
 /*
     Create a user with IUserFactory.CreateUser(userType,username,password)  method

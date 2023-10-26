@@ -1,6 +1,6 @@
 using Almacen.Models;
-using Almacen.UserFactory;
-namespace Almacen.Login;
+using Util.UserFactory;
+namespace UI.Login;
 
 public class SignUp : Login
 {

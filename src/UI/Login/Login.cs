@@ -1,6 +1,6 @@
 using Almacen.Models;
 
-namespace Almacen.Login;
+namespace UI.Login;
 
 public class Login
 {

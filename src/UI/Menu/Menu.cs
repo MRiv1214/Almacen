@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Almacen.Models;
 
-namespace Almacen.Menu
+namespace UI.Menu
 {
     public class Menu
     {
