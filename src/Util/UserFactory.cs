@@ -1,5 +1,4 @@
 using Almacen.Models;
-using Almacen.Models.AutoGenModels;
 
 namespace Util.UserFactory;
 // Implementation of IUserFactory
