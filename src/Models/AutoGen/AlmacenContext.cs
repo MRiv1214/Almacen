@@ -96,7 +96,7 @@ public partial class AlmacenContext : DbContext
 
             entity.HasOne(d => d.Career).WithMany(p => p.Employees).HasForeignKey(d => d.CareerId);
 
-            entity.HasOne(d => d.User).WithMany(p => p.Employees).HasForeignKey(d => d.UserId);
+            entity.HasOne(d => d.User).WithOne(p => p.Employee).HasForeignKey<Employee>(d => d.UserId).OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<EmployeeGroup>(entity =>
@@ -244,7 +244,7 @@ public partial class AlmacenContext : DbContext
 
             entity.HasOne(d => d.Career).WithMany(p => p.Students).HasForeignKey(d => d.CareerId);
 
-            entity.HasOne(d => d.User).WithMany(p => p.Students).HasForeignKey(d => d.UserId);
+            entity.HasOne(d => d.User).WithOne(p => p.Student).HasForeignKey<Student>(d => d.UserId).OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<StudentGroup>(entity =>
