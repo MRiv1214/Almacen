@@ -20,26 +20,41 @@ public class SqliteRepository<T> : IRepository<T> where T : class
 
     public void Create(T entity)
     {
-        throw new NotImplementedException();
+        if (entity == null)
+        {
+            throw new ArgumentNullException(nameof(entity));
+        }
+        _dbSet.Add(entity);
+        _context.SaveChanges();
     }
 
     public IEnumerable<T> GetAll()
     {
-        throw new NotImplementedException();
+        return _dbSet.ToList();
     }
 
     public T GetById(int id)
     {
-        throw new NotImplementedException();
+        return _dbSet.Find(id) ?? throw new ArgumentException("Invalid id");
     }
 
     public void Remove(T entity)
     {
-        throw new NotImplementedException();
+        if (entity == null)
+        {
+            throw new ArgumentNullException(nameof(entity));
+        }
+        _dbSet.Remove(entity);
+        _context.SaveChanges();
     }
 
     public void Update(T entity)
     {
-        throw new NotImplementedException();
+        if (entity == null)
+        {
+            throw new ArgumentNullException(nameof(entity));
+        }
+        _dbSet.Update(entity);
+        _context.SaveChanges();
     }
 }
