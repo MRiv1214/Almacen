@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Almacen.Models.AutoGen;
-using src.Util;
+using Almacen.Repository;
 using Almacen.Models.Dtos;
 
 namespace Almacen.Controllers;

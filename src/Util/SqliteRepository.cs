@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Almacen.Models.AutoGen;
+using Almacen.Repository;
 
-namespace src.Util;
+namespace Almacen.Repository.Sqlite;
 
 public class SqliteRepository<T> : IRepository<T> where T : class
 {
