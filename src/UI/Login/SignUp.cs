@@ -1,5 +1,3 @@
-
-using Util.UserFactory;
 namespace UI.Login;
 
 public class SignUp : Login
@@ -13,16 +11,16 @@ public class SignUp : Login
         switch (typeOfUser)
         {
             case gStoreKeeper:
-                CreateUserForm(IUserFactory.storekeeper);
+                CreateUserForm(typeOfUser);
                 break;
             case gTeacher:
-                CreateUserForm(IUserFactory.teacher);
+                CreateUserForm(typeOfUser);
                 break;
             case gStudent:
-                CreateUserForm(IUserFactory.student);
+                CreateUserForm(typeOfUser);
                 break;
             case gAdmin:
-                CreateUserForm(IUserFactory.admin);
+                CreateUserForm(typeOfUser);
                 break;
             case exit:
                 Environment.Exit(0);

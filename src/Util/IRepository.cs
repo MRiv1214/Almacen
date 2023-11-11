@@ -10,6 +10,7 @@ namespace src.Util
         void Create(T entity);
         IEnumerable<T> GetAll();
         T GetById(int id);
+        T GetById(long id);
         void Remove(T entity);
         void Update(T entity);
     }

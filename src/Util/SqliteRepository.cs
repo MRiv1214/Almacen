@@ -37,7 +37,10 @@ public class SqliteRepository<T> : IRepository<T> where T : class
     {
         return _dbSet.Find(id) ?? throw new ArgumentException("Invalid id");
     }
-
+    public T GetById(long id)
+    {
+        return _dbSet.Find(id) ?? throw new ArgumentException("Invalid id");
+    }
     public void Remove(T entity)
     {
         if (entity == null)
