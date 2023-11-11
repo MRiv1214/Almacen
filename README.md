@@ -3,7 +3,7 @@ Proyecto Almacen PA
 
 scaffolding with Sqlite3
 
-Scaffold-DbContext "Data Source=mydatabase.db" Microsoft.EntityFrameworkCore.Sqlite -o Models
+dotnet ef dbcontext scaffold "Data Source=Data/Almacen.db" Microsoft.EntityFrameworkCore.Sqlite -o Models/AutoGen/
 
 Querying
 https://learn.microsoft.com/en-us/ef/core/#querying

@@ -1,19 +1,43 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
-CREATE TABLE users(
-userId INTEGER PRIMARY KEY,
-password BLOB,
-name TEXT,
-lastName TEXT
-);
+CREATE TABLE users (userId INTEGER PRIMARY KEY AUTOINCREMENT, password BLOB, name TEXT, lastName TEXT);
 INSERT INTO users VALUES(1,'hashed_password_1','John','Doe');
 INSERT INTO users VALUES(2,'hashed_password_2','Alice','Smith');
 INSERT INTO users VALUES(3,'hashed_password_3','Bob','Johnson');
-CREATE TABLE employees(
-employeeId TEXT PRIMARY KEY,
-careerId TEXT,
-userId INTEGER,
-userType INTEGER
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
 );
-CREATE TABLE students (studentId INTEGER PRIMARY KEY, userId INTEGER REFERENCES users (userId), carreerId TEXT);
+CREATE TABLE groups (groupId INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);
+CREATE TABLE subject (subjectId INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);
+CREATE TABLE studentSubject (studentSubId INTEGER PRIMARY KEY AUTOINCREMENT, register NUMERIC REFERENCES students (register), subjectId INTEGER REFERENCES subject (subjectId));
+CREATE TABLE classRooms (classroomId INTEGER PRIMARY KEY AUTOINCREMENT, name);
+CREATE TABLE SubjectClassroom (SubClassId INTEGER PRIMARY KEY AUTOINCREMENT, subjectId INTEGER REFERENCES subject (subjectId), classroomId INTEGER REFERENCES classRooms (classroomId));
+CREATE TABLE studentGroup (studentGroupId INTEGER PRIMARY KEY AUTOINCREMENT, register NUMERIC REFERENCES students (register), groupId INTEGER REFERENCES groups (groupId));
+CREATE TABLE employeeSubject (employeeSubId INTEGER PRIMARY KEY AUTOINCREMENT, payroll TEXT REFERENCES employees (payroll), subjectId INTEGER REFERENCES subject (subjectId));
+CREATE TABLE campus (campusId INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);
+INSERT INTO campus VALUES(1,'Colomos');
+INSERT INTO campus VALUES(2,'Tonala');
+INSERT INTO campus VALUES(3,'Rio Santiago');
+CREATE TABLE materials (materialId INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, desc TEXT);
+CREATE TABLE maintenances (maintenanceId INTEGER PRIMARY KEY AUTOINCREMENT, materialId INTEGER REFERENCES materials (materialId), careerId INTEGER REFERENCES career (careerId), maintType TEXT, desc TEXT, spareParts TEXT, date TEXT, scheduleDate TEXT);
+CREATE TABLE requests (requestId INTEGER PRIMARY KEY AUTOINCREMENT, campusId INTEGER REFERENCES campus (campusId), classroomId INTEGER REFERENCES classRooms (classroomId), careerId INTEGER REFERENCES career (careerId), groupId INTEGER REFERENCES groups (groupId), payroll TEXT REFERENCES employees (payroll), materialId INTEGER REFERENCES materials (materialId), departureTime TEXT, deliveryTime TEXT, date TEXT, matAmount NUMERIC, authSignature INTEGER, controlNum NUMERIC);
+CREATE TABLE multipleSesRequest (mulSesRequestId INTEGER PRIMARY KEY AUTOINCREMENT, requestId INTEGER REFERENCES requests (requestId), payroll TEXT REFERENCES employees (payroll), period TEXT, InitialDate TEXT, endDate TEXT, days TEXT);
+CREATE TABLE singleSesRequest (sinSesReqId INTEGER PRIMARY KEY AUTOINCREMENT, requestId INTEGER REFERENCES requests (requestId), payroll TEXT REFERENCES employees (payroll), level TEXT, period TEXT);
+CREATE TABLE employees (payroll TEXT PRIMARY KEY, careerId INTEGER REFERENCES career (careerId), userId INTEGER REFERENCES users (userId), userType INTEGER);
+CREATE TABLE employeeGroup (employeeGroupId INTEGER PRIMARY KEY AUTOINCREMENT, payroll TEXT, groupId INTEGER REFERENCES groups (groupId));
+CREATE TABLE career (careerId INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);
+CREATE TABLE students (register NUMERIC PRIMARY KEY, userId INTEGER REFERENCES users (userId), careerId INTEGER REFERENCES career (careerId));
+CREATE TABLE studentsRequest (studentsRequestId INTEGER PRIMARY KEY AUTOINCREMENT, register NUMERIC REFERENCES students (register), requestId INTEGER REFERENCES requests (requestId));
+DELETE FROM sqlite_sequence;
+INSERT INTO sqlite_sequence VALUES('users',3);
+INSERT INTO sqlite_sequence VALUES('studentSubject',0);
+INSERT INTO sqlite_sequence VALUES('studentGroup',0);
+INSERT INTO sqlite_sequence VALUES('employeeSubject',0);
+INSERT INTO sqlite_sequence VALUES('campus',3);
+INSERT INTO sqlite_sequence VALUES('materials',0);
+INSERT INTO sqlite_sequence VALUES('maintenances',0);
+INSERT INTO sqlite_sequence VALUES('employeeGroup',0);
+INSERT INTO sqlite_sequence VALUES('career',0);
+INSERT INTO sqlite_sequence VALUES('studentsRequest',0);
 COMMIT;

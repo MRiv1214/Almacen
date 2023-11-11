@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Almacen.Models;
+namespace Almacen.Models.AutoGen;
 
 public partial class User
 {
