@@ -94,8 +94,7 @@ public partial class AlmacenContext : DbContext
             entity.Property(e => e.UserId).HasColumnName("userId");
             entity.Property(e => e.UserType).HasColumnName("userType");
 
-            entity.HasOne(d => d.Career).WithMany(p => p.Employees).HasForeignKey(d => d.CareerId);
-
+            entity.HasOne(d => d.Career).WithOne(p => p.Employee).HasForeignKey<Employee>(d => d.CareerId);
             entity.HasOne(d => d.User).WithOne(p => p.Employee).HasForeignKey<Employee>(d => d.UserId).OnDelete(DeleteBehavior.Cascade);
         });
 
