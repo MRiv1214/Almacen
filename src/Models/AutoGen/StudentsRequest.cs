@@ -5,7 +5,7 @@ namespace Almacen.Models.AutoGen;
 
 public partial class StudentsRequest
 {
-    public long StudentsRequestId { get; set; }
+    public long? StudentsRequestId { get; set; }
 
     public byte[]? Register { get; set; }
 

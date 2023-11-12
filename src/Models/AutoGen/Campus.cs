@@ -5,7 +5,7 @@ namespace Almacen.Models.AutoGen;
 
 public partial class Campus
 {
-    public long CampusId { get; set; }
+    public long? CampusId { get; set; }
 
     public string? Name { get; set; }
 

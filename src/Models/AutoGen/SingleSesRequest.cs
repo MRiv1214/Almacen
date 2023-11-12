@@ -5,7 +5,7 @@ namespace Almacen.Models.AutoGen;
 
 public partial class SingleSesRequest
 {
-    public long SinSesReqId { get; set; }
+    public long? SinSesReqId { get; set; }
 
     public long? RequestId { get; set; }
 
