@@ -13,13 +13,13 @@ public class UserController
         this.userRepository = userRepository;
     }
 
-    public void CreateUser(CreateUserDto userDto)
+    public void CreateUser(UserDto userDto)
     {
         var user = new User
         {
+            Password = userDto.Password,
             Name = userDto.Name,
-            LastName = userDto.LastName,
-            Password = userDto.Password
+            LastName = userDto.LastName
         };
         userRepository?.Create(user);
     }
@@ -33,8 +33,9 @@ public class UserController
         return users.Select(user => new UserDto
         {
             UserId = user.UserId,
-            Name = user.Name,
-            LastName = user.LastName
+            Password = user.Password!,
+            Name = user.Name!,
+            LastName = user.LastName!
         });
     }
     public UserDto GetUserById(long id)
@@ -43,8 +44,9 @@ public class UserController
         return new UserDto
         {
             UserId = user.UserId,
-            Name = user.Name,
-            LastName = user.LastName
+            Password = user.Password!,
+            Name = user.Name!,
+            LastName = user.LastName!
         };
     }
     public void RemoveUser(long id)
