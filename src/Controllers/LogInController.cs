@@ -17,14 +17,14 @@ public class LogInController
     {
         this.userRepository = userRepository;
     }
-    public (User? user, bool sucess) LogIn(string name, byte[] password)
+    public (User? user, string error) LogIn(string name, byte[] password)
     {
         var userController = new UserController(userRepository);
         var user = userController.GetUserByCredentials(password, name);
         if (user == null)
         {
-            return (null, false);
+            return (null, "Invalid credentials");
         }
-        return (user, true);
+        return (user, "");
     }
 }

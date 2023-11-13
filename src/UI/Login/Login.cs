@@ -5,7 +5,8 @@ public class Login
 {
     public const string singIn = "Sign In", signUp = "Sign Up", exit = "Exit";
     public const string gStoreKeeper = "StoreKeeper", gTeacher = "Teacher", gStudent = "Student", gAdmin = "Admin";
-    public static string SelectUser()
+    
+    public static UserType SelectUser()
     {
         Clear();
         var typeOfUser = AnsiConsole.Prompt(
@@ -13,9 +14,18 @@ public class Login
                 .Title("Select your type of user")
                 .PageSize(4)
                 .AddChoices(new[] {
-                    gStoreKeeper, gTeacher, gStudent, gAdmin
+                    gAdmin, gStoreKeeper, gTeacher, gStudent
         }));
-        return typeOfUser;
+        // select type of user
+        UserType userType = typeOfUser switch
+        {
+            gAdmin => UserType.Admin,
+            gStoreKeeper => UserType.StoreKeeper,
+            gTeacher => UserType.Teacher,
+            gStudent => UserType.Student,
+            _ => throw new ArgumentException("Invalid type of user")
+        };
+        return userType;
     }
     //Console Login
     public static void ConsoleLogin()

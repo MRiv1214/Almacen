@@ -7,37 +7,32 @@ using Almacen.Repository.Sqlite;
 using Almacen.UI.Forms;
 namespace UI.Login;
 
-
-public class SignUp : Login
+public class SignUp 
 {
     //Console Sign Up
     public static void Sign_Up()
     {
-        
         // login with user and password to create new user
         var UserId = UserForm.CreateUserForm();
         long CareerId;
         AnsiConsole.Markup("[blue]Sign Up[/]\n");
-        var typeOfUser = SelectUser();
+        var typeOfUser = Login.SelectUser();
         switch (typeOfUser)
         {
-            case gStoreKeeper:
-                EmployeeForm.CreateStoreKeeper(UserId);
+            case UserType.StoreKeeper:
+                EmployeeForm.CreateEmployee(UserId, 0, UserType.StoreKeeper);
                 break;
-            case gTeacher:
+            case UserType.Teacher:
                 CareerId = CareerForm.SelectCareer();
-                EmployeeForm.CreateTeacher(UserId, CareerId);
+                EmployeeForm.CreateEmployee(UserId, CareerId, UserType.Teacher);
                 break;
-            case gStudent:
+            case UserType.Student:
                 CareerId = CareerForm.SelectCareer();
                 StudentForm.CreateStudent(UserId, CareerId);
                 break;
-            case gAdmin:
+            case UserType.Admin:
                 CareerId = CareerForm.SelectCareer();
-                EmployeeForm.CreateAdmin(UserId, CareerId);
-                break;
-            case exit:
-                Environment.Exit(0);
+                EmployeeForm.CreateEmployee(UserId, CareerId, UserType.Admin);
                 break;
         }
     }
