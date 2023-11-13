@@ -51,9 +51,9 @@ public class UserController
             LastName = user.LastName!
         };
     }
-    public User? GetUserByCredentials(byte[] password, string name)
+    public User? GetUserByName(string name)
     {
-        var user = userRepository?.GetSingleBy(x => SHA256Password.Compare (password, x.Password!) && x.Name == name);
+        var user = userRepository?.GetSingleBy(x => x.Name == name);
         if (user == null)
         {
             return null;
@@ -74,7 +74,7 @@ public class UserController
 
     public void UpdateUser(UserDto userDto)
     {
-        var user = userRepository?.GetById(userDto.UserId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var user = userRepository?.GetById(userDto.UserId ?? throw new ArgumentException("Invalid id")) ?? throw new ArgumentException("Invalid id");
         user.Name = userDto.Name;
         user.LastName = userDto.LastName;
         userRepository?.Update(user);

@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.Arm;
 using System.Threading.Tasks;
 using Almacen.Controllers;
+using Almacen.Helpers;
 using Almacen.Models.AutoGen;
 using Almacen.Models.Dtos;
 using Almacen.Repository;
@@ -20,11 +22,16 @@ public class LogInController
     public (User? user, string error) LogIn(string name, byte[] password)
     {
         var userController = new UserController(userRepository);
-        var user = userController.GetUserByCredentials(password, name);
+        var user = userController.GetUserByName(name);
         if (user == null)
         {
-            return (null, "Invalid credentials");
+            return (null, "User not found");
         }
-        return (user, "");
+
+        if (SHA256Password.Compare(password, user.Password!) == true)
+        {
+            return (user, "User logged in");
+        }
+        return (null, "Invalid credentials");
     }
 }

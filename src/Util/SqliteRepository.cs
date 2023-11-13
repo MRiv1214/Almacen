@@ -49,9 +49,9 @@ public class SqliteRepository<T> : IRepository<T> where T : class
         return _dbSet.Find(id) ?? throw new ArgumentException("Invalid id");
     }
 
-    public T GetSingleBy(Expression<Func<T, bool>> predicate)
+    public T? GetSingleBy(Expression<Func<T, bool>> predicate)
     {
-        return _dbSet.SingleOrDefault(predicate) ?? throw new ArgumentException($"No entity matching the provided predicate {predicate} was found");
+        return _dbSet.SingleOrDefault(predicate);
     }
 
     public void Remove(T entity)
