@@ -11,7 +11,7 @@ public class EmployeeGroupController
     {
         this.employeeGroupRepository = employeeGroupRepository;
     }
-    public void CreateEmployeeGroup(EmployeeGroupDto employeeGroupDto)
+    public long CreateEmployeeGroup(EmployeeGroupDto employeeGroupDto)
     {
         var employeeGroup = new EmployeeGroup
         {
@@ -19,6 +19,7 @@ public class EmployeeGroupController
             GroupId = employeeGroupDto.GroupId,
         };
         employeeGroupRepository?.Create(employeeGroup);
+        return employeeGroup.EmployeeGroupId;
     }
     public IEnumerable<EmployeeGroup> GetAllEmployeeGroups()
     {
@@ -51,7 +52,7 @@ public class EmployeeGroupController
     }
     public void UpdateEmployeeGroupDto (EmployeeGroup employeeGroup)
     {
-        var employeeGroupToUpdate = employeeGroupRepository?.GetById(employeeGroup.EmployeeGroupId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var employeeGroupToUpdate = employeeGroupRepository?.GetById(employeeGroup.EmployeeGroupId)?? throw new ArgumentException("Invalid id");
         employeeGroupToUpdate.Payroll = employeeGroup.Payroll;
         employeeGroupToUpdate.GroupId = employeeGroup.GroupId;
         employeeGroupRepository?.Update(employeeGroupToUpdate);
