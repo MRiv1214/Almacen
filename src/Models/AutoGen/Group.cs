@@ -5,7 +5,7 @@ namespace Almacen.Models.AutoGen;
 
 public partial class Group
 {
-    public long? GroupId { get; set; }
+    public long GroupId { get; set; }
 
     public string? Name { get; set; }
 

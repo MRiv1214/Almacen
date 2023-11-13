@@ -10,13 +10,14 @@ public class GroupController
     {
         this.groupRepository = groupRepository;
     }
-    public void CreateGroup(GroupDto groupDto)
+    public long CreateGroup(GroupDto groupDto)
     {
         var group = new Group
         {
             Name = groupDto.Name,
         };
         groupRepository?.Create(group);
+        return group.GroupId;
     }
     public IEnumerable<Group> GetAllGroups()
     {
@@ -47,7 +48,7 @@ public class GroupController
     }
     public void UpdateGroup(Group group)
     {
-        var groupToUpdate = groupRepository?.GetById(group.GroupId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var groupToUpdate = groupRepository?.GetById(group.GroupId)?? throw new ArgumentException("Invalid id");
         groupToUpdate.Name = group.Name;
         groupRepository?.Update(groupToUpdate);
     }

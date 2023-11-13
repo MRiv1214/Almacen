@@ -11,7 +11,7 @@ public class StudentGroupController
     {
         this.studentGroupRepository = studentGroupRepository;
     }
-    public void CreateStudentGroup(StudentGroupDto studentGroupDto)
+    public long CreateStudentGroup(StudentGroupDto studentGroupDto)
     {
         var studentGroup = new StudentGroup
         {
@@ -19,6 +19,7 @@ public class StudentGroupController
             GroupId = studentGroupDto.GroupId,
         };
         studentGroupRepository?.Create(studentGroup);
+        return studentGroup.StudentGroupId;
     }
     public IEnumerable<StudentGroup> GetAllStudentGroups()
     {
@@ -51,7 +52,7 @@ public class StudentGroupController
     }
     public void UpdateStudentGroup(StudentGroup studentGroup)
     {
-        var studentGroupToUpdate = studentGroupRepository?.GetById(studentGroup.StudentGroupId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var studentGroupToUpdate = studentGroupRepository?.GetById(studentGroup.StudentGroupId)?? throw new ArgumentException("Invalid id");
         studentGroupToUpdate.Register = studentGroup.Register;
         studentGroupToUpdate.GroupId = studentGroup.GroupId;
         studentGroupRepository?.Update(studentGroupToUpdate);

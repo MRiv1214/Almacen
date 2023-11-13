@@ -10,7 +10,7 @@ public class StudentSubjectController
     {
         this.studentSubjectRepository = studentSubjectRepository;
     }
-    public void CreateStudentSubject(StudentSubjectDto studentSubjectDto)
+    public long CreateStudentSubject(StudentSubjectDto studentSubjectDto)
     {
         var studentSubject = new StudentSubject
         {
@@ -18,6 +18,7 @@ public class StudentSubjectController
             SubjectId = studentSubjectDto.SubjectId,
         };
         studentSubjectRepository?.Create(studentSubject);
+        return studentSubject.StudentSubId;
     }
     public IEnumerable<StudentSubject> GetAllStudentSubjects()
     {
@@ -50,7 +51,7 @@ public class StudentSubjectController
     }
     public void UpdateStudentSubject(StudentSubject studentSubject)
     {
-        var studentSubjectToUpdate = studentSubjectRepository?.GetById(studentSubject.StudentSubId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var studentSubjectToUpdate = studentSubjectRepository?.GetById(studentSubject.StudentSubId) ?? throw new ArgumentException("Invalid id");
         studentSubjectToUpdate.Register = studentSubject.Register;
         studentSubjectToUpdate.SubjectId = studentSubject.SubjectId;
         studentSubjectRepository?.Update(studentSubjectToUpdate);

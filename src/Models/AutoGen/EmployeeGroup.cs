@@ -5,7 +5,7 @@ namespace Almacen.Models.AutoGen;
 
 public partial class EmployeeGroup
 {
-    public long? EmployeeGroupId { get; set; }
+    public long EmployeeGroupId { get; set; }
 
     public string? Payroll { get; set; }
 

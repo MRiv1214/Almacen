@@ -11,7 +11,7 @@ public class EmployeeSubjectController
     {
         this.employeeSubjectRepository = employeeSubjectRepository;
     }
-    public void CreateEmployeeSubject(EmployeeSubjectDto employeeSubjectDto)
+    public long CreateEmployeeSubject(EmployeeSubjectDto employeeSubjectDto)
     {
         var employeeSubject = new EmployeeSubject
         {
@@ -19,6 +19,7 @@ public class EmployeeSubjectController
             SubjectId = employeeSubjectDto.SubjectId,
         };
         employeeSubjectRepository?.Create(employeeSubject);
+        return employeeSubject.EmployeeSubId;
     }
     public IEnumerable<EmployeeSubject> GetAllEmployeeSubjects()
     {
@@ -51,7 +52,7 @@ public class EmployeeSubjectController
     }
     public void UpdateEmployeeSubject(EmployeeSubject employeeSubject)
     {
-        var employeeSubjectToUpdate = employeeSubjectRepository?.GetById(employeeSubject.EmployeeSubId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var employeeSubjectToUpdate = employeeSubjectRepository?.GetById(employeeSubject.EmployeeSubId)?? throw new ArgumentException("Invalid id");
         employeeSubjectToUpdate.Payroll = employeeSubject.Payroll;
         employeeSubjectToUpdate.SubjectId = employeeSubject.SubjectId;
         employeeSubjectRepository?.Update(employeeSubjectToUpdate);
