@@ -1,4 +1,6 @@
 
+using Almacen.Models.AutoGen;
+
 namespace UI.Login;
 
 public class Login
@@ -28,21 +30,22 @@ public class Login
         return userType;
     }
     //Console Login
-    public static void ConsoleLogin()
+    public static User? ConsoleLogin()
     {
+        User? user = null;
         // login with user and password or create new user
         Clear();
-        var user = AnsiConsole.Prompt(
+        var userSelection = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Select an option")
                 .PageSize(4)
                 .AddChoices(new[] {
                     singIn, signUp, exit
         }));
-        switch (user)
+        switch (userSelection)
         {
             case singIn:
-                SignIn.Sign_In();
+                user = SignIn.Sign_In();
                 break;
             case signUp:
                 SignUp.Sign_Up();
@@ -51,5 +54,6 @@ public class Login
                 Environment.Exit(0);
                 break;
         }
+        return user;
     }
 }

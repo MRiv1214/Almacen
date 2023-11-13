@@ -7,10 +7,12 @@ namespace UI.Login;
 
 public class SignIn
 {
-    public static void Sign_In()
+    public static User Sign_In()
     {
         var userRepository = new SqliteRepository<User>(AlmacenContext.GetInstance());
         var logInController = new LogInController(userRepository);
+        User? user;
+        string message;
         do
         {
             Clear();
@@ -22,17 +24,19 @@ public class SignIn
                         .PromptStyle("gray")
                         .Secret()));
                             
-            var (user, error) = logInController.LogIn(username, passwordRequest);
+            (user, message) = logInController.LogIn(username, passwordRequest);
             if (user == null)
             {
-                AnsiConsole.MarkupLine($"[red]{error}[/]");
+                AnsiConsole.MarkupLine($"[red]{message}[/]");
                 AnsiConsole.MarkupLine("[red]Press any key to continue...[/]");
                 ReadKey();
                 continue;
             }
-            AnsiConsole.MarkupLine($"[green]{error}[/]");
-            ReadKey();
             
-        } while (true);
+            
+        } while (user == null);
+        AnsiConsole.MarkupLine($"[green]{message}[/]");
+        ReadKey();
+        return user;
     }    
 }
