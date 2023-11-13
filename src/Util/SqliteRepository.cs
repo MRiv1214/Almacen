@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Almacen.Models.AutoGen;
 using Almacen.Repository;
+using System.Linq.Expressions;
 
 namespace Almacen.Repository.Sqlite;
 
@@ -34,6 +35,11 @@ public class SqliteRepository<T> : IRepository<T> where T : class
         return _dbSet.ToList();
     }
 
+    public IReadOnlyCollection<T> GetBy(Expression<Func<T, bool>> predicate)
+    {
+        return _dbSet.Where(predicate).ToList().AsReadOnly();
+    }
+
     public T GetById(int id)
     {
         return _dbSet.Find(id) ?? throw new ArgumentException("Invalid id");
@@ -42,6 +48,12 @@ public class SqliteRepository<T> : IRepository<T> where T : class
     {
         return _dbSet.Find(id) ?? throw new ArgumentException("Invalid id");
     }
+
+    public T GetSingleBy(Expression<Func<T, bool>> predicate)
+    {
+        return _dbSet.SingleOrDefault(predicate) ?? throw new ArgumentException($"No entity matching the provided predicate {predicate} was found");
+    }
+
     public void Remove(T entity)
     {
         if (entity == null)

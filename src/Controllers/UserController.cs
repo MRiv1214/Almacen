@@ -50,6 +50,21 @@ public class UserController
             LastName = user.LastName!
         };
     }
+    public UserDto? GetUserByCredentials(byte[] password, string name)
+    {
+        var user = userRepository?.GetSingleBy(x => x.Password.SequenceEqual(password) && x.Name == name);
+        if (user == null)
+        {
+            return null;
+        }
+        return new UserDto
+        {
+            UserId = user.UserId,
+            Password = user.Password!,
+            Name = user.Name!,
+            LastName = user.LastName!
+        };
+    }
     public void RemoveUser(long id)
     {
         var user = (userRepository?.GetById(id)) ?? throw new ArgumentException("Invalid id");
