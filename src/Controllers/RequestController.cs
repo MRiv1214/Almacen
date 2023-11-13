@@ -10,7 +10,7 @@ public class RequestController
     {
         this.requestRepository = requestRepository;
     }
-    public void CreateRequest(RequestDto requestDto)
+    public long CreateRequest(RequestDto requestDto)
     {
         var request = new Request
         {
@@ -28,6 +28,7 @@ public class RequestController
             ControlNum = requestDto.ControlNum,
         };
         requestRepository?.Create(request);
+        return request.RequestId;
     }
     public IEnumerable<Request> GetAllRequests()
     {
@@ -80,7 +81,7 @@ public class RequestController
     }
     public void UpdateRequest(Request request)
     {
-        var requestToUpdate = requestRepository?.GetById(request.RequestId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var requestToUpdate = requestRepository?.GetById(request.RequestId)?? throw new ArgumentException("Invalid id");
         requestToUpdate.CampusId = request.CampusId;
         requestToUpdate.ClassroomId = request.ClassroomId;
         requestToUpdate.CareerId = request.CareerId;

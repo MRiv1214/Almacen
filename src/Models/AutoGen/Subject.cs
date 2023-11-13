@@ -5,7 +5,7 @@ namespace Almacen.Models.AutoGen;
 
 public partial class Subject
 {
-    public long? SubjectId { get; set; }
+    public long SubjectId { get; set; }
 
     public string? Name { get; set; }
 

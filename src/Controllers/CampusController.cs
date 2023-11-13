@@ -11,13 +11,14 @@ public class CampusController
     {
         this.campusRepository = campusRepository;
     }
-    public void CreateCampus(CampusDto campusDto)
+    public long CreateCampus(CampusDto campusDto)
     {
         var campus = new Campus
         {
             Name = campusDto.Name,
         };
         campusRepository?.Create(campus);
+        return campus.CampusId;
     }
     public IEnumerable<Campus> GetAllCampuses()
     {
@@ -48,7 +49,7 @@ public class CampusController
     }
     public void UpdateCampus(Campus campus)
     {
-        var campusToUpdate = campusRepository?.GetById(campus.CampusId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var campusToUpdate = campusRepository?.GetById(campus.CampusId)?? throw new ArgumentException("Invalid id");
         campusToUpdate.Name = campus.Name;
         campusRepository?.Update(campusToUpdate);
     }

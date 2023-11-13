@@ -11,7 +11,7 @@ public class MaterialController
     {
         this.materialRepository = materialRepository;
     }
-    public void CreateMaterial(MaterialDto materialDto)
+    public long CreateMaterial(MaterialDto materialDto)
     {
         var material = new Material
         {
@@ -19,6 +19,7 @@ public class MaterialController
             Desc = materialDto.Desc,
         };
         materialRepository?.Create(material);
+        return material.MaterialId;
     }
     public IEnumerable<Material> GetAllMaterials()
     {
@@ -51,7 +52,7 @@ public class MaterialController
     }
     public void UpdateMaterial(Material material)
     {
-        var materialToUpdate = materialRepository?.GetById(material.MaterialId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var materialToUpdate = materialRepository?.GetById(material.MaterialId) ?? throw new ArgumentException("Invalid id");
         materialToUpdate.Name = material.Name;
         materialToUpdate.Desc = material.Desc;
         materialRepository?.Update(materialToUpdate);

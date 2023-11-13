@@ -12,10 +12,11 @@ public class EmployeeForm
         switch (typeOfUser)
         {
             case "Admin":
+
                 CreateCoordinator();
                 break;
             case "Teacher":
-                CreateTeacher();
+                Create();
                 break;
             case "StoreKeeper":
                 CreateStoreKeeper();
@@ -26,9 +27,8 @@ public class EmployeeForm
         }
     }
 
-    public void CreateTeacher()
+    public void Create()
     {
-        Console.WriteLine("Create Teacher");
         
     }
     public void CreateStoreKeeper()
