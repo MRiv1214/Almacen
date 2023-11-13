@@ -5,7 +5,7 @@ namespace Almacen.Models.AutoGen;
 
 public partial class Career
 {
-    public long? CareerId { get; set; }
+    public long CareerId { get; set; }
 
     public string? Name { get; set; }
 

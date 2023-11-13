@@ -10,13 +10,14 @@ public class CareerController
     {
         this.careerRepository = careerRepository;
     }
-    public void CreateCareer(CareerDto careerDto)
+    public long CreateCareer(CareerDto careerDto)
     {
         var career = new Career
         {
             Name = careerDto.Name,
         };
         careerRepository?.Create(career);
+        return career.CareerId;
     }
     public IEnumerable<Career> GetAllCareers()
     {
@@ -47,7 +48,7 @@ public class CareerController
     }
     public void UpdateCareer(Career career)
     {
-        var careerToUpdate = careerRepository?.GetById(career.CareerId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var careerToUpdate = careerRepository?.GetById(career.CareerId)?? throw new ArgumentException("Invalid id");
         careerToUpdate.Name = career.Name;
         careerRepository?.Update(careerToUpdate);
     }

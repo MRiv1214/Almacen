@@ -13,7 +13,7 @@ public class UserController
         this.userRepository = userRepository;
     }
 
-    public void CreateUser(UserDto userDto)
+    public long CreateUser(UserDto userDto)
     {
         var user = new User
         {
@@ -22,6 +22,7 @@ public class UserController
             LastName = userDto.LastName
         };
         userRepository?.Create(user);
+        return user.UserId;
     }
     public IEnumerable<UserDto> GetAllUsers()
     {

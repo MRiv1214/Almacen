@@ -9,7 +9,7 @@ public class StudentController
     {
         this.studentRepository = studentRepository;
     }
-    public void CreateStudent(StudentDto studentDto)
+    public byte[] CreateStudent(StudentDto studentDto)
     {
         var student = new Student
         {
@@ -18,6 +18,7 @@ public class StudentController
             CareerId = studentDto.CareerId
         };
         studentRepository?.Create(student);
+        return student.Register;
     }
     public IEnumerable<Student> GetAllStudents()
     {

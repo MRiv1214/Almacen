@@ -11,7 +11,7 @@ public class EmployeeController
     {
         this.employeeRepository = employeeRepository;
     }
-    public void CreateEmployee(EmployeeDto employeeDto)
+    public string CreateEmployee(EmployeeDto employeeDto)
     {
         var employee = new Employee
         {
@@ -21,6 +21,7 @@ public class EmployeeController
             UserType = employeeDto.UserType
         };
         employeeRepository?.Create(employee);
+        return employee.Payroll;
     }
     public IEnumerable<Employee> GetAllEmployees()
     {
