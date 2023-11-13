@@ -54,6 +54,7 @@ public class StudentController
         var studentToUpdate = studentRepository?.GetById(student.UserId ?? throw new ArgumentException("Invalid id")) ?? throw new ArgumentException("Invalid id");
         studentToUpdate.Register = student.Register;
         studentToUpdate.CareerId = student.CareerId;
+        studentRepository?.Update(studentToUpdate);
     }
-    
+
 }

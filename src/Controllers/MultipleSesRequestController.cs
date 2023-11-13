@@ -10,7 +10,7 @@ public class MultipleSesRequestController
     {
         this.mulSesRequestRepository = mulSesRequestRepository;
     }
-    public void CreateMulSesRequest(MultipleSesRequestDto mulSesRequestDto)
+    public long CreateMulSesRequest(MultipleSesRequestDto mulSesRequestDto)
     {
         var mulSesRequest = new MultipleSesRequest
         {
@@ -22,6 +22,7 @@ public class MultipleSesRequestController
             Days = mulSesRequestDto.Days,
         };
         mulSesRequestRepository?.Create(mulSesRequest);
+        return mulSesRequest.MulSesRequestId;
     }
     public IEnumerable<MultipleSesRequest> GetAllMulSesRequests()
     {
@@ -62,7 +63,7 @@ public class MultipleSesRequestController
     }
     public void UpdateMulSesRequest(MultipleSesRequest mulSesRequest)
     {
-        var mulSesRequestToUpdate = mulSesRequestRepository?.GetById(mulSesRequest.MulSesRequestId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var mulSesRequestToUpdate = mulSesRequestRepository?.GetById(mulSesRequest.MulSesRequestId)?? throw new ArgumentException("Invalid id");
         mulSesRequestToUpdate.RequestId = mulSesRequest.RequestId;
         mulSesRequestToUpdate.Payroll = mulSesRequest.Payroll;
         mulSesRequestToUpdate.Period = mulSesRequest.Period;

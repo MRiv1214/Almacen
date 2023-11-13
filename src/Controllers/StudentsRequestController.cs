@@ -11,7 +11,7 @@ public class StudentsRequestController
     {
         this.studentsRequestRepository = studentsRequestRepository;
     }
-    public void CreateStudentsRequest(StudentsRequestDto studentsRequestDto)
+    public long CreateStudentsRequest(StudentsRequestDto studentsRequestDto)
     {
         var studentsRequest = new StudentsRequest
         {
@@ -19,6 +19,7 @@ public class StudentsRequestController
             RequestId = studentsRequestDto.RequestId,
         };
         studentsRequestRepository?.Create(studentsRequest);
+        return studentsRequest.StudentsRequestId;
     }
     public IEnumerable<StudentsRequest> GetAllStudentsRequests()
     {
@@ -51,7 +52,7 @@ public class StudentsRequestController
     }
     public void UpdateStudentsRequest(StudentsRequest studentsRequest)
     {
-        var studentsRequestToUpdate = studentsRequestRepository?.GetById(studentsRequest.StudentsRequestId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var studentsRequestToUpdate = studentsRequestRepository?.GetById(studentsRequest.StudentsRequestId)?? throw new ArgumentException("Invalid id");
         studentsRequestToUpdate.Register = studentsRequest.Register;
         studentsRequestToUpdate.RequestId = studentsRequest.RequestId;
         studentsRequestRepository?.Update(studentsRequestToUpdate);

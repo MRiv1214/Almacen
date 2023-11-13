@@ -5,7 +5,7 @@ namespace Almacen.Models.AutoGen;
 
 public partial class ClassRoom
 {
-    public long? ClassroomId { get; set; }
+    public long ClassroomId { get; set; }
 
     //apoco es byte el tipo de dato de name?
     public byte[]? Name { get; set; }

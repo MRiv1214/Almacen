@@ -10,13 +10,15 @@ public class SubjectController
     {
         this.subjectRepository = subjectRepository;
     }
-    public void CreateSubject(SubjectDto subjectDto)
+    public long CreateSubject(SubjectDto subjectDto)
     {
         var subject = new Subject
         {
-            Name = subjectDto.Name,
+            SubjectId = subjectDto.SubjectId,
+            Name = subjectDto.Name
         };
         subjectRepository?.Create(subject);
+        return subject.SubjectId;
     }
     public IEnumerable<Subject> GetAllSubjects()
     {
@@ -47,7 +49,7 @@ public class SubjectController
     }
     public void UpdateSubject(Subject subject)
     {
-        var subjectToUpdate = subjectRepository?.GetById(subject.SubjectId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var subjectToUpdate = subjectRepository?.GetById(subject.SubjectId)?? throw new ArgumentException("Invalid id");
         subjectToUpdate.Name = subject.Name;
         subjectRepository?.Update(subjectToUpdate);
     }

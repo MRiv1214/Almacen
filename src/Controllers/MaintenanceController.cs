@@ -11,7 +11,7 @@ public class MaintenanceController
     {
         this.maintenanceRepository = maintenanceRepository;
     }
-    public void CreateMaintenance(MaintenanceDto maintenanceDto)
+    public long CreateMaintenance(MaintenanceDto maintenanceDto)
     {
         var maintenance = new Maintenance
         {
@@ -24,6 +24,7 @@ public class MaintenanceController
             ScheduleDate = maintenanceDto.ScheduleDate,
         };
         maintenanceRepository?.Create(maintenance);
+        return maintenance.MaintenanceId;
     }
     public IEnumerable<Maintenance> GetAllMaintenances()
     {
@@ -66,7 +67,7 @@ public class MaintenanceController
     }
     public void UpdateMaintenance(Maintenance maintenance)
     {
-        var maintenanceToUpdate = maintenanceRepository?.GetById(maintenance.MaintenanceId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var maintenanceToUpdate = maintenanceRepository?.GetById(maintenance.MaintenanceId)?? throw new ArgumentException("Invalid id");
         maintenanceToUpdate.MaterialId = maintenance.MaterialId;
         maintenanceToUpdate.CareerId = maintenance.CareerId;
         maintenanceToUpdate.MaintType = maintenance.MaintType;

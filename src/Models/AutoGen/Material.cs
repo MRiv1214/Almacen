@@ -5,7 +5,7 @@ namespace Almacen.Models.AutoGen;
 
 public partial class Material
 {
-    public long? MaterialId { get; set; }
+    public long MaterialId { get; set; }
 
     public string? Name { get; set; }
 

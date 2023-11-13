@@ -5,7 +5,7 @@ namespace Almacen.Models.AutoGen;
 
 public partial class Request
 {
-    public long? RequestId { get; set; }
+    public long RequestId { get; set; }
 
     public long? CampusId { get; set; }
 

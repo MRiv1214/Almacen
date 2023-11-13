@@ -10,7 +10,7 @@ public class SubjectClassroomController
     {
         this.subjectClassroomRepository = subjectClassroomRepository;
     }
-    public void CreateSubjectClassroom(SubjectClaasroomDto subjectClassroomDto)
+    public long CreateSubjectClassroom(SubjectClaasroomDto subjectClassroomDto)
     {
         var subjectClassroom = new SubjectClassroom
         {
@@ -18,6 +18,7 @@ public class SubjectClassroomController
             ClassroomId = subjectClassroomDto.ClassroomId,
         };
         subjectClassroomRepository?.Create(subjectClassroom);
+        return subjectClassroom.SubClassId;
     }
     public IEnumerable<SubjectClassroom> GetAllSubjectClassrooms()
     {
@@ -50,7 +51,7 @@ public class SubjectClassroomController
     }
     public void UpdateSubjectClassroom(SubjectClassroom subjectClassroom)
     {
-        var subjectClassroomToUpdate = subjectClassroomRepository?.GetById(subjectClassroom.SubClassId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var subjectClassroomToUpdate = subjectClassroomRepository?.GetById(subjectClassroom.SubClassId)?? throw new ArgumentException("Invalid id");
         subjectClassroomToUpdate.SubjectId = subjectClassroom.SubjectId;
         subjectClassroomToUpdate.ClassroomId = subjectClassroom.ClassroomId;
         subjectClassroomRepository?.Update(subjectClassroomToUpdate);

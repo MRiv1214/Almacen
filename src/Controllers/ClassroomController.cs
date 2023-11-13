@@ -10,13 +10,14 @@ public class ClassroomController
     {
         this.classroomRepository = classroomRepository;
     }
-    public void CreateClassroom(ClassroomDto classroomDto)
+    public long CreateClassroom(ClassroomDto classroomDto)
     {
         var classroom = new ClassRoom
         {
             Name = classroomDto.Name,
         };
         classroomRepository?.Create(classroom);
+        return classroom.ClassroomId;
     }
     public IEnumerable<ClassRoom> GetAllClassrooms()
     {
@@ -47,9 +48,8 @@ public class ClassroomController
     }
     public void UpdateClassroom(ClassRoom classroom)
     {
-        var classroomToUpdate = classroomRepository?.GetById(classroom.ClassroomId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var classroomToUpdate = classroomRepository?.GetById(classroom.ClassroomId)?? throw new ArgumentException("Invalid id");
         classroomToUpdate.Name = classroom.Name;
         classroomRepository?.Update(classroomToUpdate);
     }
-        
 }

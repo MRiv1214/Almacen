@@ -10,7 +10,7 @@ public class SingleSesRequestController
     {
         this.singleSesRequestRepository = singleSesRequestRepository;
     }
-    public void CreateSingleSesRequest(SingleSesRequestDto singleSesRequestDto)
+    public long CreateSingleSesRequest(SingleSesRequestDto singleSesRequestDto)
     {
         var singleSesRequest = new SingleSesRequest
         {
@@ -20,6 +20,7 @@ public class SingleSesRequestController
             Period = singleSesRequestDto.Period,
         };
         singleSesRequestRepository?.Create(singleSesRequest);
+        return singleSesRequest.SinSesReqId;
     }
     public IEnumerable<SingleSesRequest> GetAllSingleSesRequests()
     {
@@ -56,7 +57,7 @@ public class SingleSesRequestController
     }
     public void UpdateSingleSesRequest(SingleSesRequest singleSesRequest)
     {
-        var singleSesRequestToUpdate = singleSesRequestRepository?.GetById(singleSesRequest.SinSesReqId ?? throw new ArgumentException("Invalid id"))?? throw new ArgumentException("Invalid id");
+        var singleSesRequestToUpdate = singleSesRequestRepository?.GetById(singleSesRequest.SinSesReqId)?? throw new ArgumentException("Invalid id");
         singleSesRequestToUpdate.RequestId = singleSesRequest.RequestId;
         singleSesRequestToUpdate.Payroll = singleSesRequest.Payroll;
         singleSesRequestToUpdate.Level = singleSesRequest.Level;
