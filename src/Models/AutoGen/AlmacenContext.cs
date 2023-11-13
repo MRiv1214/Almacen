@@ -6,15 +6,21 @@ namespace Almacen.Models.AutoGen;
 
 public partial class AlmacenContext : DbContext
 {
-    public AlmacenContext()
+    private static AlmacenContext? _instance;
+    private static readonly object _lock = new();
+
+    private AlmacenContext()
     {
     }
-
-    public AlmacenContext(DbContextOptions<AlmacenContext> options)
-        : base(options)
+    
+    public static AlmacenContext GetInstance()
     {
+        lock (_lock)
+        {
+            _instance ??= new AlmacenContext();
+        }
+        return _instance;
     }
-
     public virtual DbSet<Campus> Campuses { get; set; }
 
     public virtual DbSet<Career> Careers { get; set; }

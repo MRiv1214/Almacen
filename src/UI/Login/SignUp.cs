@@ -1,34 +1,41 @@
+using Almacen.Controllers;
+using Almacen.Models.Dtos;
+using Almacen.Helpers;
+using Almacen.Repository;
+using Almacen.Models.AutoGen;
+using Almacen.Repository.Sqlite;
+using Almacen.UI.Forms;
 namespace UI.Login;
+
 
 public class SignUp : Login
 {
     //Console Sign Up
     public static void Sign_Up()
     {
-        // login with user and password or create new user
+        
+        // login with user and password to create new user
+        UserForm.CreateUserForm();
         AnsiConsole.Markup("[blue]Sign Up[/]\n");
         var typeOfUser = SelectUser();
         switch (typeOfUser)
         {
             case gStoreKeeper:
-                CreateUserForm(typeOfUser);
+                
                 break;
             case gTeacher:
-                CreateUserForm(typeOfUser);
+                
                 break;
             case gStudent:
-                CreateUserForm(typeOfUser);
+                
                 break;
             case gAdmin:
-                CreateUserForm(typeOfUser);
+                
                 break;
             case exit:
                 Environment.Exit(0);
                 break;
         }
     }
-    private static void CreateUserForm(string typeOfUser)
-    {
-        throw new NotImplementedException();
-    }
+    
 }

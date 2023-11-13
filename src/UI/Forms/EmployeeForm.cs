@@ -11,14 +11,14 @@ public class EmployeeForm
     {
         switch (typeOfUser)
         {
-            case "Student":
-                CreateStudent();
-                break;
-            case "Employee":
+            case "Admin":
                 CreateCoordinator();
                 break;
             case "Teacher":
                 CreateTeacher();
+                break;
+            case "StoreKeeper":
+                CreateStoreKeeper();
                 break;
             default:
                 Console.WriteLine("Invalid option");
@@ -38,10 +38,6 @@ public class EmployeeForm
     public void CreateCoordinator()
     {
         Console.WriteLine("Create Coordinator");
-    }
-    public void CreateStudent()
-    {
-        Console.WriteLine("Create Student");
     }
 }
 
