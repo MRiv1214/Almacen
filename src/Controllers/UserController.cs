@@ -1,6 +1,7 @@
 using Almacen.Models.AutoGen;
 using Almacen.Repository;
 using Almacen.Models.Dtos;
+using Almacen.Helpers;
 
 namespace Almacen.Controllers;
 
@@ -50,14 +51,14 @@ public class UserController
             LastName = user.LastName!
         };
     }
-    public UserDto? GetUserByCredentials(byte[] password, string name)
+    public User? GetUserByCredentials(byte[] password, string name)
     {
-        var user = userRepository?.GetSingleBy(x => x.Password.SequenceEqual(password) && x.Name == name);
+        var user = userRepository?.GetSingleBy(x => SHA256Password.Compare (password, x.Password!) && x.Name == name);
         if (user == null)
         {
             return null;
         }
-        return new UserDto
+        return new User
         {
             UserId = user.UserId,
             Password = user.Password!,
