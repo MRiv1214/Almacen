@@ -14,6 +14,12 @@ public record EmployeeDto
     public required long UserId { get; init; }
     public required long UserType { get; init; }
 }
+public record StudentDto
+{
+    public required byte[] Register { get; init;}
+    public required long UserId { get; init; }
+    public required long CareerId { get; init; }
+}
 public record CareerDto
 {
     public required string Name { get; init; }
