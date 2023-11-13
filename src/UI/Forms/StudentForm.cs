@@ -7,16 +7,18 @@ using Almacen.Models.Dtos;
 using Almacen.Helpers;
 using Almacen.Repository.Sqlite;
 using Almacen.Models.AutoGen;
+using System.Text;
 
 namespace Almacen.UI.Forms;
 public static class StudentForm
 {
     public static byte[] CreateStudent(long UserId, long CareerId)
     {
-        var Register = AnsiConsole.Ask<byte[]>("Enter your Register:");
+        AnsiConsole.Markup("[blue]Sign Up[/]\n");
+        var Register = AnsiConsole.Ask<string>("Enter your Register:");
         var studentDto = new StudentDto
         {
-            Register = Register,
+            Register = Encoding.UTF8.GetBytes(Register),
             UserId = UserId,
             CareerId = CareerId,
         };

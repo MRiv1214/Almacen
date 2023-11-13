@@ -41,6 +41,16 @@ public class CareerController
             Name = career.Name,
         };
     }
+
+    public Career GetCareerByName(string name)
+    {
+        var career = (careerRepository?.GetSingleBy(career => career.Name == name)) ?? throw new ArgumentException("Invalid name");
+        return new Career
+        {
+            CareerId = career.CareerId,
+            Name = career.Name,
+        };
+    }
     
     public void RemoveCareer(long id)
     {

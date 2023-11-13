@@ -11,7 +11,7 @@ public class Login
         var typeOfUser = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Select your type of user")
-                .PageSize(3)
+                .PageSize(4)
                 .AddChoices(new[] {
                     gStoreKeeper, gTeacher, gStudent, gAdmin
         }));

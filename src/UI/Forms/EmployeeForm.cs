@@ -7,37 +7,18 @@ namespace Almacen.UI.Forms;
 
 public class EmployeeForm
 {
-    public void CreateEmployee(string typeOfUser)
+    internal static void CreateAdmin(long userId, long careerId)
     {
-        switch (typeOfUser)
-        {
-            case "Admin":
-
-                CreateCoordinator();
-                break;
-            case "Teacher":
-                Create();
-                break;
-            case "StoreKeeper":
-                CreateStoreKeeper();
-                break;
-            default:
-                Console.WriteLine("Invalid option");
-                break;
-        }
+        throw new NotImplementedException();
     }
 
-    public void Create()
+    internal static void CreateStoreKeeper(long userId)
     {
-        
+        throw new NotImplementedException();
     }
-    public void CreateStoreKeeper()
+
+    internal static void CreateTeacher(long userId, long careerId)
     {
-        Console.WriteLine("Create StoreKeeper");
-    }
-    public void CreateCoordinator()
-    {
-        Console.WriteLine("Create Coordinator");
+        throw new NotImplementedException();
     }
 }
-

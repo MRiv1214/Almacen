@@ -24,8 +24,9 @@ public class CareerForm
         var CareerId = careerController.CreateCareer(careerDto); 
         return CareerId;
     }
-    public static string SelectCareers(long id)
+    public static long SelectCareer()
     {
+        AnsiConsole.Markup("[blue]Sign Up[/]\n");
         var careerRepository = new SqliteRepository<Career>(AlmacenContext.GetInstance());
         var careerController = new CareerController(careerRepository);
         var careers = careerController.GetAllCareers();
@@ -40,8 +41,7 @@ public class CareerForm
             .PageSize(10)
             .MoreChoicesText("[grey](Move up and down to reveal more careers)[/]")
             .AddChoices(careersName));
-            
-        return String.Empty;
-        //careerId = careerController.GetCareerId(careerName).careerId;
+                        
+        return careerController.GetCareerByName(careerName).CareerId;
     }
 }
