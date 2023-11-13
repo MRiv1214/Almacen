@@ -8,9 +8,20 @@ using Almacen.Helpers;
 using Almacen.Repository.Sqlite;
 using Almacen.Models.AutoGen;
 
-
 namespace Almacen.UI.Forms;
-public class StudentForm
+public static class StudentForm
 {
-
+    public static byte[] CreateStudent(long UserId, long CareerId)
+    {
+        var Register = AnsiConsole.Ask<byte[]>("Enter your Register:");
+        var studentDto = new StudentDto
+        {
+            Register = Register,
+            UserId = UserId,
+            CareerId = CareerId,
+        };
+        var studentRepository = new SqliteRepository<Student>(AlmacenContext.GetInstance());
+        var studentController = new StudentController(studentRepository);
+        return studentController.CreateStudent(studentDto);
+    }
 }

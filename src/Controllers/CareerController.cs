@@ -41,6 +41,7 @@ public class CareerController
             Name = career.Name,
         };
     }
+    
     public void RemoveCareer(long id)
     {
         var career = (careerRepository?.GetById(id)) ?? throw new ArgumentException("Invalid id");

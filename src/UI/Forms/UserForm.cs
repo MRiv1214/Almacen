@@ -12,7 +12,7 @@ namespace Almacen.UI.Forms;
 
 public static class UserForm
 {
-    public static void CreateUserForm()
+    public static long CreateUserForm()
     {
         var name = AnsiConsole.Ask<string>("Enter your name:");
         var lastName = AnsiConsole.Ask<string>("Enter your last name:");
@@ -25,6 +25,7 @@ public static class UserForm
         };
         var userRepository = new SqliteRepository<User>(AlmacenContext.GetInstance());
         var userController = new UserController(userRepository);
-        userController.CreateUser(userDto); 
+        var UserId = userController.CreateUser(userDto); 
+        return UserId;
     }
 }

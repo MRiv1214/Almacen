@@ -15,7 +15,8 @@ public class SignUp : Login
     {
         
         // login with user and password to create new user
-        UserForm.CreateUserForm();
+        var UserId = UserForm.CreateUserForm();
+        //var CareerId = CareerForm.GetAllCareers();
         AnsiConsole.Markup("[blue]Sign Up[/]\n");
         var typeOfUser = SelectUser();
         switch (typeOfUser)
@@ -27,7 +28,7 @@ public class SignUp : Login
                 
                 break;
             case gStudent:
-                
+                StudentForm.CreateStudent(UserId, 1); //CareerId
                 break;
             case gAdmin:
                 
