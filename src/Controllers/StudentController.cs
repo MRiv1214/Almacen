@@ -34,9 +34,27 @@ public class StudentController
             CareerId = student.CareerId
         });
     }
-    public Student GetStudentById(long id)
+    public Student? GetStudentById(long id)
     {
         var student = (studentRepository?.GetById(id)) ?? throw new ArgumentException("Invalid id");
+        if (student == null)
+        {
+            return null;
+        }
+        return new Student
+        {
+            Register = student.Register,
+            UserId = student.UserId,
+            CareerId = student.CareerId
+        };
+    }
+    public Student? GetStudentByUserId(long id)
+    {
+        var student = studentRepository?.GetSingleBy(x => x.UserId == id);
+        if (student == null)
+        {
+            return null;
+        }
         return new Student
         {
             Register = student.Register,

@@ -38,9 +38,28 @@ public class EmployeeController
             UserType = employee.UserType
         });
     }
-    public Employee GetEmployeeById(long id)
+    public Employee? GetEmployeeById(long id)
     {
         var employee = (employeeRepository?.GetById(id)) ?? throw new ArgumentException("Invalid id");
+        if (employee == null)
+        {
+            return null;
+        }
+        return new Employee
+        {
+            Payroll = employee.Payroll,
+            CareerId = employee.CareerId,
+            UserId = employee.UserId,
+            UserType = employee.UserType
+        };
+    }
+    public Employee? GetEmployeeByUserId(long id)
+    {
+        var employee = employeeRepository?.GetSingleBy(x => x.UserId == id);
+        if (employee == null)
+        {
+            return null;
+        }
         return new Employee
         {
             Payroll = employee.Payroll,
