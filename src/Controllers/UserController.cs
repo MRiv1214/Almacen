@@ -2,6 +2,7 @@ using Almacen.Models.AutoGen;
 using Almacen.Repository;
 using Almacen.Models.Dtos;
 using Almacen.Helpers;
+using System.Runtime.Serialization;
 
 namespace Almacen.Controllers;
 
@@ -14,16 +15,27 @@ public class UserController
         this.userRepository = userRepository;
     }
 
-    public long CreateUser(UserDto userDto)
+    public (long, string) CreateUser(UserDto userDto) 
     {
+        string message;
         var user = new User
         {
             Password = userDto.Password,
             Name = userDto.Name,
             LastName = userDto.LastName
         };
-        userRepository?.Create(user);
-        return user.UserId;
+        //Check if user already exists
+        if (UserExists(user.Name))
+        {
+            message = "User already exists";
+            return (0, message);
+        }
+        else
+        {
+            userRepository?.Create(user);
+            message = "User created successfully";
+            return (user.UserId, message);
+        }
     }
     public IEnumerable<UserDto> GetAllUsers()
     {
@@ -78,5 +90,14 @@ public class UserController
         user.Name = userDto.Name;
         user.LastName = userDto.LastName;
         userRepository?.Update(user);
+    }
+    public bool UserExists(string name)
+    {
+        var user = userRepository?.GetSingleBy(x => x.Name == name);
+        if (user == null)
+        {
+            return false;
+        }
+        return true;
     }
 }
