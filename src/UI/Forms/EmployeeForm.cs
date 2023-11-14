@@ -12,6 +12,8 @@ namespace Almacen.UI.Forms;
 
 public class EmployeeForm
 {
+    private static readonly SqliteRepository<Employee> employeeRepository = new(AlmacenContext.GetInstance());
+    private static readonly EmployeeController employeeController = new(employeeRepository);
     internal static void CreateEmployee(long userId, long careerId, UserType userType)
     {
         AnsiConsole.Markup("[blue]Create Employee[/]\n");
@@ -22,9 +24,6 @@ public class EmployeeForm
             CareerId = careerId,
             UserType = (long) userType
         };
-
-        var employeeRepository = new SqliteRepository<Employee>(AlmacenContext.GetInstance());
-        var employeeController = new EmployeeController(employeeRepository);
         employeeController.CreateEmployee(employeeDto);
     }
 

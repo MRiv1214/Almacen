@@ -12,23 +12,20 @@ namespace Almacen.UI.Forms;
 
 public class CareerForm
 {
-    public static long CreateCareerForm()
+    private static readonly SqliteRepository<Career> careerRepository = new(AlmacenContext.GetInstance());
+    private static readonly CareerController careerController = new(careerRepository);
+    public static long CreateCareer()
     {
-        var name = AnsiConsole.Ask<string>("Enter your name:");
+        var name = AnsiConsole.Ask<string>("Enter career name:");
         var careerDto = new CareerDto
         {
             Name = name,
         };
-        var careerRepository = new SqliteRepository<Career>(AlmacenContext.GetInstance());
-        var careerController = new CareerController(careerRepository);
         var CareerId = careerController.CreateCareer(careerDto); 
         return CareerId;
     }
     public static long SelectCareer()
     {
-        AnsiConsole.Markup("[blue]Sign Up[/]\n");
-        var careerRepository = new SqliteRepository<Career>(AlmacenContext.GetInstance());
-        var careerController = new CareerController(careerRepository);
         var careers = careerController.GetAllCareers();
         var careersName = new List<string>();
         foreach (var career in careers)
@@ -43,5 +40,11 @@ public class CareerForm
             .AddChoices(careersName));
                         
         return careerController.GetCareerByName(careerName).CareerId;
+    }
+
+    public static void RemoveCareer()
+    {
+        AnsiConsole.Markup("[blue]Remove Career[/]\n");
+        careerController.RemoveCareer(SelectCareer());
     }
 }

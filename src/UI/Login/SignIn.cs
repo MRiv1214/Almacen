@@ -33,7 +33,6 @@ public class SignIn
                 continue;
             }
             
-            
         } while (user == null);
         AnsiConsole.MarkupLine($"[green]{message}[/]");
         ReadKey();
