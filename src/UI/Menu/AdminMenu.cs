@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Almacen.Models.AutoGen;
 using UI.Menu;
+using Almacen.UI.Forms;
+using UI.Login;
 
 namespace UI.Menu;
 
@@ -32,7 +34,7 @@ public class AdminMenu
         switch (userSelection)
         {
             case Employee:
-                Employee_Menu();
+                User_Menu();
                 break;
             case Student:
                 Student_Menu();
@@ -65,6 +67,8 @@ public class AdminMenu
     UpdateEmployee = "Update Employee", DeleteEmployee = "Delete Employee", Back = "Back";
     public static void Employee_Menu()
     {
+        var UserId = UserForm.CreateUserForm();
+        long CareerId;
         var userSelection = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Select an option")
@@ -75,7 +79,7 @@ public class AdminMenu
         switch (userSelection)
         {
             case CreateEmployee:
-                // CreateEmployee();
+                EmployeeForm.CreateEmployeeForm(UserId, 9);
                 break;
             case ViewEmployee:
                 // ViewEmployee();
@@ -88,7 +92,34 @@ public class AdminMenu
                 break;
             case Back:
                 Admin_Menu();
-                //YA TAN BIEN
+                // YA TAN BIEN
+                break;
+            case Exit:
+                Environment.Exit(0);
+                break;
+        }
+    }
+
+    public const string Teacher = "Teacher", StoreKeeper = "Store Keeper";
+    public static void User_Menu()
+    {
+        var userSelection = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("Select an option")
+                .PageSize(4)
+                .AddChoices(new[] {
+                    Teacher, StoreKeeper, Back, Exit
+        }));
+        switch (userSelection)
+        {
+            case Teacher:
+                Employee_Menu();
+                break;
+            case StoreKeeper:
+                Employee_Menu();
+                break;
+            case Back:
+                Admin_Menu();
                 break;
             case Exit:
                 Environment.Exit(0);

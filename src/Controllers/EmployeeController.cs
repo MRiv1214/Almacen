@@ -38,9 +38,9 @@ public class EmployeeController
             UserType = employee.UserType
         });
     }
-    public Employee? GetEmployeeById(long id)
+    public Employee? GetEmployeeByPayroll(string payroll)
     {
-        var employee = (employeeRepository?.GetById(id)) ?? throw new ArgumentException("Invalid id");
+        var employee = employeeRepository?.GetSingleBy(employee => employee.Payroll == payroll);
         if (employee == null)
         {
             return null;
@@ -53,6 +53,7 @@ public class EmployeeController
             UserType = employee.UserType
         };
     }
+
     public Employee? GetEmployeeByUserId(long id)
     {
         var employee = employeeRepository?.GetSingleBy(x => x.UserId == id);
@@ -68,9 +69,9 @@ public class EmployeeController
             UserType = employee.UserType
         };
     }
-    public void RemoveEmployee(long id)
+    public void RemoveEmployee(string id)
     {
-        var employee = (employeeRepository?.GetById(id)) ?? throw new ArgumentException("Invalid id");
+        var employee = (employeeRepository?.GetSingleBy(x => x.Payroll == id)) ?? throw new ArgumentException("Invalid id");
         employeeRepository?.Remove(employee);
     }
     public void UpdateEmployee(Employee employee)
@@ -81,5 +82,10 @@ public class EmployeeController
         employeeToUpdate.UserId = employee.UserId;
         employeeToUpdate.UserType = employee.UserType;
         employeeRepository?.Update(employeeToUpdate);
+    }
+
+    internal object GetEmployeeByPayroll(byte[] employeePayrollBytes)
+    {
+        throw new NotImplementedException();
     }
 }

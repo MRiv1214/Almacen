@@ -27,4 +27,38 @@ public class EmployeeForm
         employeeController.CreateEmployee(employeeDto);
     }
 
+    internal static string SelectEmployee()
+    {
+        var employees = employeeController.GetAllEmployees();
+        var employeesPayroll = new List<string>();
+        foreach (var employee in employees)
+        {
+            employeesPayroll.Add(employee.Payroll!);
+        }
+        var employeePayroll = AnsiConsole.Prompt(
+        new SelectionPrompt<string>()
+            .Title("Select a employee")
+            .PageSize(10)
+            .MoreChoicesText("[grey](Move up and down to reveal more employees)[/]")
+            .AddChoices(employeesPayroll));
+        return employeeController.GetEmployeeByPayroll(employeePayroll)!.Payroll;
+    }
+
+    internal static void UpdateEmployee()
+    {
+        AnsiConsole.Markup("[blue]Update Employee[/]\n");
+        var employee = employeeController.GetEmployeeByPayroll(SelectEmployee())!;
+        employee.Payroll = AnsiConsole.Ask<string>("Enter your payroll:");
+        employeeController.UpdateEmployee(employee);
+    }
+
+    internal static void RemoveEmployee()
+    {
+        AnsiConsole.Markup("[blue]Remove Employee[/]\n");
+        employeeController.RemoveEmployee(SelectEmployee());
+    }
+
+    
+
+
 }
