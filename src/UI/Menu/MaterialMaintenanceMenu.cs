@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace UI.Menu;
 
-public class MaterialMaintenanceMenu
+public class MaterialMaintenanceMenu : View
 {
     public const string CreateMaintenance = "Create Material Maintenance", ViewMaintenance = "View Material Maintenance", 
     UpdateMaintenance = "Update Material Maintenance", DeleteMaintenance = "Delete Material Maintenance", Back = "Back", Exit = "Exit";

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UI.Login;
+using Almacen.Helpers;
 
 namespace UI.Forms;
 
-public class SelectUser
+public class SelectUser : View
 {
     public const string gStoreKeeper = "StoreKeeper", gTeacher = "Teacher", gStudent = "Student", gAdmin = "Admin";
     
-    public static UserType SelectUse()
+    public static UserType SelectUserForm()
     {
         Clear();
         var typeOfUser = AnsiConsole.Prompt(

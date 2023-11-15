@@ -9,8 +9,8 @@ using Almacen.Repository.Sqlite;
 using Almacen.Models.AutoGen;
 using System.Text;
 
-namespace Almacen.UI.Forms;
-public static class StudentForm
+namespace UI.Forms;
+public class StudentForm : View
 {
     private static readonly SqliteRepository<Student> studentRepository = new(AlmacenContext.GetInstance());
     private static readonly StudentController studentController = new(studentRepository);

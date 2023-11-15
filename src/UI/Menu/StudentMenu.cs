@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace UI.Menu;
-public class StudentMenu
+public class StudentMenu : View
 {
     public const string Request = "Create Request", ChangePassword = "Change Password", Exit = "Exit";
     public static void Student_Menu()

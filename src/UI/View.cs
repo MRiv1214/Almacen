@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace UI.Forms;
+namespace UI;
 
-public class GroupForm : View
+public abstract class View
 {
-       
+    
 }

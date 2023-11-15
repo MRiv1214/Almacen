@@ -6,11 +6,12 @@ using Almacen.Controllers;
 using Almacen.Models.AutoGen;
 using Almacen.Models.Dtos;
 using Almacen.Repository.Sqlite;
-using UI.Login;
+using Almacen.Helpers;
 
-namespace Almacen.UI.Forms;
 
-public class EmployeeForm
+namespace UI.Forms;
+
+public class EmployeeForm : View
 {
     private static readonly SqliteRepository<Employee> employeeRepository = new(AlmacenContext.GetInstance());
     private static readonly EmployeeController employeeController = new(employeeRepository);

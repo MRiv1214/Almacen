@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace UI.Menu;
 
-public class RequestMenu
+public class RequestMenu : View
 {
     public const string CreateRequest = "Create Request", ViewRequest = "View Request",
     UpdateRequest = "Update Request", DeleteRequest = "Delete Request", Back = "Back", Exit = "Exit";

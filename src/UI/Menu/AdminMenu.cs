@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Almacen.Helpers;
 using Almacen.Models.AutoGen;
-using UI.Menu;
-using Almacen.UI.Forms;
+using UI.Forms;
 using UI.Login;
 
 namespace UI.Menu;
 
-public class AdminMenu
+public class AdminMenu : View
 {
     //SUBMENU EMPLOYEE: Create, View, Update, Delete
     //SUBMENU STUDENT: Create, View, Update, Delete
@@ -67,8 +67,7 @@ public class AdminMenu
     UpdateEmployee = "Update Employee", DeleteEmployee = "Delete Employee", Back = "Back";
     public static void Employee_Menu()
     {
-        var UserId = UserForm.CreateUserForm();
-        long CareerId;
+
         var userSelection = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Select an option")
@@ -79,10 +78,12 @@ public class AdminMenu
         switch (userSelection)
         {
             case CreateEmployee:
-                EmployeeForm.CreateEmployeeForm(UserId, 9);
+                // CreateEmployee();
+                SignUp.Sign_Up();
                 break;
             case ViewEmployee:
                 // ViewEmployee();
+
                 break;
             case UpdateEmployee:
                 // UpdateEmployee();

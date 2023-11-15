@@ -3,7 +3,7 @@ using Almacen.Models.AutoGen;
 
 namespace UI.Login;
 
-public class Login
+public class Login : View
 {
     public const string singIn = "Sign In", signUp = "Sign Up", exit = "Exit";
     //Console Login

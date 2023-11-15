@@ -8,9 +8,9 @@ using Almacen.Helpers;
 using Almacen.Repository.Sqlite;
 using Almacen.Models.AutoGen;
 
-namespace Almacen.UI.Forms;
+namespace UI.Forms;
 
-public static class UserForm
+public class UserForm : View
 {
     public static long CreateUserForm()
     {

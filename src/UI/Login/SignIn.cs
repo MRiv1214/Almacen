@@ -6,7 +6,7 @@ using UI.Menu;
 
 namespace UI.Login;
 
-public class SignIn
+public class SignIn : View
 {
     public static User Sign_In()
     {

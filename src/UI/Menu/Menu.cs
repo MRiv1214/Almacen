@@ -8,7 +8,7 @@ using Almacen.Controllers;
 
 namespace UI.Menu;
 
-public class Menu
+public class Menu : View
 {
     // instanciar el repositorio de usuario
     private static readonly SqliteRepository<Employee> userRepository = new (AlmacenContext.GetInstance());

@@ -1,4 +1,4 @@
-namespace UI.Login;
+namespace Almacen.Helpers;
 
 public enum UserType
 {

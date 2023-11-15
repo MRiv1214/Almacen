@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace UI.Menu;
 
-public class TeacherMenu
+public class TeacherMenu : View
 {
     public const string Request = "Request", ChangePassword = "Change Password", Exit = "Exit";
     public static void Teacher_Menu()

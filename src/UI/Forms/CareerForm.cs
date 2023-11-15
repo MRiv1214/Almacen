@@ -4,13 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Almacen.Controllers;
 using Almacen.Models.Dtos;
-using Almacen.Helpers;
 using Almacen.Repository.Sqlite;
 using Almacen.Models.AutoGen;
 
-namespace Almacen.UI.Forms;
+namespace UI.Forms;
 
-public class CareerForm
+public class CareerForm : View
 {
     private static readonly SqliteRepository<Career> careerRepository = new(AlmacenContext.GetInstance());
     private static readonly CareerController careerController = new(careerRepository);
