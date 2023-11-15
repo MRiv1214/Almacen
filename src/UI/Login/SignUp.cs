@@ -20,7 +20,7 @@ public class SignUp
         switch (typeOfUser)
         {
             case UserType.StoreKeeper:
-                EmployeeForm.CreateEmployee(UserId, 0, UserType.StoreKeeper);
+                EmployeeForm.CreateEmployee(UserId, 9, UserType.StoreKeeper);
                 break;
             case UserType.Teacher:
                 CareerId = CareerForm.SelectCareer();

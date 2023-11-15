@@ -30,7 +30,7 @@ public class CareerForm
         var careersName = new List<string>();
         foreach (var career in careers)
         {
-            careersName.Add(career.Name);
+            careersName.Add(career.Name!);
         }
         var careerName = AnsiConsole.Prompt(
         new SelectionPrompt<string>()
