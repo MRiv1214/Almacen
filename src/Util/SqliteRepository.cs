@@ -35,18 +35,18 @@ public class SqliteRepository<T> : IRepository<T> where T : class
         return _dbSet.ToList();
     }
 
-    public IReadOnlyCollection<T> GetBy(Expression<Func<T, bool>> predicate)
+    public IReadOnlyCollection<T>? GetBy(Expression<Func<T, bool>> predicate)
     {
         return _dbSet.Where(predicate).ToList().AsReadOnly();
     }
 
-    public T GetById(int id)
+    public T? GetById(int id)
     {
-        return _dbSet.Find(id) ?? throw new ArgumentException("Invalid id");
+        return _dbSet.Find(id);
     }
-    public T GetById(long id)
+    public T? GetById(long id)
     {
-        return _dbSet.Find(id) ?? throw new ArgumentException("Invalid id");
+        return _dbSet.Find(id);
     }
 
     public T? GetSingleBy(Expression<Func<T, bool>> predicate)
