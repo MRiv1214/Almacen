@@ -8,7 +8,7 @@ namespace Almacen.Controllers;
 
 public class UserController
 {
-    private readonly IRepository<User>? userRepository;
+    public IRepository<User>? userRepository;
 
     public UserController(IRepository<User>? userRepository)
     {
@@ -52,9 +52,10 @@ public class UserController
             LastName = user.LastName!
         });
     }
-    public UserDto GetUserById(long id)
+    public UserDto? GetUserById(long id)
     {
-        var user = (userRepository?.GetById(id)) ?? throw new ArgumentException("Invalid id");
+        var user = userRepository?.GetById(id);
+        if (user == null) return null;
         return new UserDto
         {
             UserId = user.UserId,
@@ -78,10 +79,12 @@ public class UserController
             LastName = user.LastName!
         };
     }
-    public void RemoveUser(long id)
+    public bool RemoveUser(long id)
     {
-        var user = (userRepository?.GetById(id)) ?? throw new ArgumentException("Invalid id");
+        var user = userRepository?.GetById(id);
+        if (user is null) return false;
         userRepository?.Remove(user);
+        return true;
     }
 
     public void UpdateUser(UserDto userDto)

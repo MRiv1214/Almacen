@@ -11,7 +11,7 @@ namespace Almacen.Repository.Sqlite;
 
 public class SqliteRepository<T> : IRepository<T> where T : class
 {
-    private readonly AlmacenContext _context;
+    public AlmacenContext _context;
     private readonly DbSet<T> _dbSet;
 
     public SqliteRepository(AlmacenContext context)
