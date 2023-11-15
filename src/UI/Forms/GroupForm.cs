@@ -5,7 +5,15 @@ using System.Threading.Tasks;
 
 namespace UI.Forms;
 
-public class GroupForm : View
+public class GroupForm : IView
 {
-       
+    public void DoOption(string option)
+    {
+        throw new NotImplementedException();
+    }
+
+    public string GetOption()
+    {
+        throw new NotImplementedException();
+    }
 }

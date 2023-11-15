@@ -9,7 +9,7 @@ using Almacen.Models.AutoGen;
 
 namespace UI.Forms;
 
-public class CareerForm : View
+public class CareerForm : IView
 {
     private static readonly SqliteRepository<Career> careerRepository = new(AlmacenContext.GetInstance());
     private static readonly CareerController careerController = new(careerRepository);
@@ -20,7 +20,7 @@ public class CareerForm : View
         {
             Name = name,
         };
-        var CareerId = careerController.CreateCareer(careerDto); 
+        var CareerId = careerController.CreateCareer(careerDto);
         return CareerId;
     }
     public static long SelectCareer()
@@ -37,7 +37,7 @@ public class CareerForm : View
             .PageSize(10)
             .MoreChoicesText("[grey](Move up and down to reveal more careers)[/]")
             .AddChoices(careersName));
-                        
+
         return careerController.GetCareerByName(careerName).CareerId;
     }
 
@@ -57,5 +57,15 @@ public class CareerForm : View
     {
         AnsiConsole.Markup("[blue]Remove Career[/]\n");
         careerController.RemoveCareer(SelectCareer());
+    }
+
+    public string GetOption()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void DoOption(string option)
+    {
+        throw new NotImplementedException();
     }
 }

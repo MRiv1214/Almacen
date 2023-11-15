@@ -1,28 +1,22 @@
 
 using Almacen.Models.AutoGen;
+using UI;
 
 namespace UI.Login;
 
-public class Login : View
+public class Login : IView
 {
     public const string singIn = "Sign In", signUp = "Sign Up", exit = "Exit";
     //Console Login
-    public static User? ConsoleLogin()
+    public User? user = null;
+
+    void IView.DoOption(string option)
     {
-        User? user = null;
-        // login with user and password or create new user
-        Clear();
-        var userSelection = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .Title("Select an option")
-                .PageSize(4)
-                .AddChoices(new[] {
-                    singIn, signUp, exit
-        }));
-        switch (userSelection)
+        switch (option)
         {
             case singIn:
-                user = SignIn.Sign_In();
+                // user = SignIn.Sign_In();
+                ViewManager.Next(new SignIn());
                 break;
             case signUp:
                 SignUp.Sign_Up();
@@ -31,6 +25,18 @@ public class Login : View
                 Environment.Exit(0);
                 break;
         }
-        return user;
+    }
+
+    string IView.GetOption()
+    {
+        Clear();
+        var userSelection = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("Select an option")
+                .PageSize(4)
+                .AddChoices(new[] {
+                    singIn, signUp, exit
+        }));
+        return userSelection;
     }
 }

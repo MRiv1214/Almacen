@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace UI.Menu;
 
-public class MaterialMenu : View
+public class MaterialMenu : IView
 {
     public const string CreateMaterial = "Create Material", ViewMaterial = "View Material",
     UpdateMaterial = "Update Material", DeleteMaterial = "Delete Material", Back = "Back", Exit = "Exit";
@@ -34,12 +34,20 @@ public class MaterialMenu : View
                 break;
             case Back:
                 break;
-                //Back
+            //Back
             case Exit:
                 Environment.Exit(0);
                 break;
         }
     }
 
-    
+    public void DoOption(string option)
+    {
+        throw new NotImplementedException();
+    }
+
+    public string GetOption()
+    {
+        throw new NotImplementedException();
+    }
 }

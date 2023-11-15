@@ -7,32 +7,34 @@ namespace UI;
 
 public class ViewManager
 {
-    private Stack<View> viewStack = new();
+    public static Stack<IView> viewStack = new();
 
-    public void ShowView(View view)
+    public ViewManager(IView initialView)
     {
-        viewStack.Push(view);
-        RunCurrentView();
+        Next(view: initialView);
     }
-    private void RunCurrentView()
+
+    public static void Run()
     {
-        View currentView = viewStack.Peek();
-        //currentView.Show();
-        /*var option = currentView.GetOption();
-        if (option == 0)
+        while (viewStack.Count() != 0)
         {
-            viewStack.Pop();
-            if (viewStack.Count > 0)
+            IView currentView = viewStack.Peek();
+            //currentView.Show();
+            var option = currentView.GetOption();
+            if (!string.IsNullOrEmpty(option))
             {
-                RunCurrentView();
+                currentView.DoOption(option);
+            }
+            else
+            {
+                viewStack.Pop();
             }
         }
-        else
-        {
-            currentView.RunOption(option);
-            RunCurrentView();
-        }
-        */
+    }
+
+    public static void Next(IView view)
+    {
+        viewStack.Push(view);
     }
 
 }

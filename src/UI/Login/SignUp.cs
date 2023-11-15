@@ -2,7 +2,7 @@ using Almacen.Helpers;
 using UI.Forms;
 namespace UI.Login;
 
-public class SignUp : View
+public class SignUp : IView
 {
     //Console Sign Up
     public static void Sign_Up()
@@ -31,5 +31,14 @@ public class SignUp : View
                 break;
         }
     }
-    
+
+    public void DoOption(string option)
+    {
+        throw new NotImplementedException();
+    }
+
+    public string GetOption()
+    {
+        throw new NotImplementedException();
+    }
 }

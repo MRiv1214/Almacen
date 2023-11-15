@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace UI.Menu;
 
-public class MaterialMaintenanceMenu : View
+public class MaterialMaintenanceMenu : IView
 {
-    public const string CreateMaintenance = "Create Material Maintenance", ViewMaintenance = "View Material Maintenance", 
+    public const string CreateMaintenance = "Create Material Maintenance", ViewMaintenance = "View Material Maintenance",
     UpdateMaintenance = "Update Material Maintenance", DeleteMaintenance = "Delete Material Maintenance", Back = "Back", Exit = "Exit";
     public static void MaterialMaintenance_Menu()
     {
@@ -34,10 +34,20 @@ public class MaterialMaintenanceMenu : View
                 break;
             case Back:
                 break;
-                //Back
+            //Back
             case Exit:
                 Environment.Exit(0);
                 break;
         }
+    }
+
+    public void DoOption(string option)
+    {
+        throw new NotImplementedException();
+    }
+
+    public string GetOption()
+    {
+        throw new NotImplementedException();
     }
 }

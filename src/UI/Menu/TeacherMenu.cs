@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace UI.Menu;
 
-public class TeacherMenu : View
+public class TeacherMenu : IView
 {
     public const string Request = "Request", ChangePassword = "Change Password", Exit = "Exit";
     public static void Teacher_Menu()
@@ -29,5 +29,15 @@ public class TeacherMenu : View
                 Environment.Exit(0);
                 break;
         }
+    }
+
+    public void DoOption(string option)
+    {
+        throw new NotImplementedException();
+    }
+
+    public string GetOption()
+    {
+        throw new NotImplementedException();
     }
 }

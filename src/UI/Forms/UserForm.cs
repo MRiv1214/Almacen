@@ -10,7 +10,7 @@ using Almacen.Models.AutoGen;
 
 namespace UI.Forms;
 
-public class UserForm : View
+public class UserForm : IView
 {
     public static long CreateUserForm()
     {
@@ -25,8 +25,18 @@ public class UserForm : View
         };
         var userRepository = new SqliteRepository<User>(AlmacenContext.GetInstance());
         var userController = new UserController(userRepository);
-        var (UserId,message) = userController.CreateUser(userDto); 
+        var (UserId, message) = userController.CreateUser(userDto);
         AnsiConsole.MarkupLine($"[gray]{message}[/]");
         return UserId;
+    }
+
+    public void DoOption(string option)
+    {
+        throw new NotImplementedException();
+    }
+
+    public string GetOption()
+    {
+        throw new NotImplementedException();
     }
 }

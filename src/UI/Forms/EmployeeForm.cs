@@ -11,7 +11,7 @@ using Almacen.Helpers;
 
 namespace UI.Forms;
 
-public class EmployeeForm : View
+public class EmployeeForm : IView
 {
     private static readonly SqliteRepository<Employee> employeeRepository = new(AlmacenContext.GetInstance());
     private static readonly EmployeeController employeeController = new(employeeRepository);
@@ -23,7 +23,7 @@ public class EmployeeForm : View
             Payroll = AnsiConsole.Ask<string>("Enter your payroll:"),
             UserId = userId,
             CareerId = careerId,
-            UserType = (long) userType
+            UserType = (long)userType
         };
         employeeController.CreateEmployee(employeeDto);
     }
@@ -59,7 +59,13 @@ public class EmployeeForm : View
         employeeController.RemoveEmployee(SelectEmployee());
     }
 
-    
+    public string GetOption()
+    {
+        throw new NotImplementedException();
+    }
 
-
+    public void DoOption(string option)
+    {
+        throw new NotImplementedException();
+    }
 }

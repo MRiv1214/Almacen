@@ -7,10 +7,10 @@ using Almacen.Helpers;
 
 namespace UI.Forms;
 
-public class SelectUser : View
+public class SelectUser : IView
 {
     public const string gStoreKeeper = "StoreKeeper", gTeacher = "Teacher", gStudent = "Student", gAdmin = "Admin";
-    
+
     public static UserType SelectUserForm()
     {
         Clear();
@@ -32,6 +32,16 @@ public class SelectUser : View
         };
         return userType;
     }
+
+    public void DoOption(string option)
+    {
+        throw new NotImplementedException();
+    }
+
+    public string GetOption()
+    {
+        throw new NotImplementedException();
+    }
 }
-        
+
 

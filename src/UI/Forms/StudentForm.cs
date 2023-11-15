@@ -10,7 +10,7 @@ using Almacen.Models.AutoGen;
 using System.Text;
 
 namespace UI.Forms;
-public class StudentForm : View
+public class StudentForm : IView
 {
     private static readonly SqliteRepository<Student> studentRepository = new(AlmacenContext.GetInstance());
     private static readonly StudentController studentController = new(studentRepository);
@@ -64,5 +64,15 @@ public class StudentForm : View
     {
         AnsiConsole.Markup("[blue]Remove Student[/]\n");
         studentController.RemoveStudent(SelectStudent());
+    }
+
+    public string GetOption()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void DoOption(string option)
+    {
+        throw new NotImplementedException();
     }
 }

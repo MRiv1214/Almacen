@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace UI.Menu;
-public class StoreKeeper : View
+public class StoreKeeper : IView
 {
-    public const string Request = "Request", Material = "Material", 
+    public const string Request = "Request", Material = "Material",
     MaterialMaintenance = "Material Maintenance", ChangePassword = "Change Password", Exit = "Exit";
     public static void StoreKeeper_Menu()
     {
@@ -38,4 +38,13 @@ public class StoreKeeper : View
 
     }
 
+    public void DoOption(string option)
+    {
+        throw new NotImplementedException();
+    }
+
+    public string GetOption()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -9,7 +9,7 @@ using UI.Login;
 
 namespace UI.Menu;
 
-public class AdminMenu : View
+public class AdminMenu : IView
 {
     //SUBMENU EMPLOYEE: Create, View, Update, Delete
     //SUBMENU STUDENT: Create, View, Update, Delete
@@ -63,7 +63,7 @@ public class AdminMenu : View
         }
     }
 
-    public const string CreateEmployee = "Create Employee", ViewEmployee = "View Employee", 
+    public const string CreateEmployee = "Create Employee", ViewEmployee = "View Employee",
     UpdateEmployee = "Update Employee", DeleteEmployee = "Delete Employee", Back = "Back";
     public static void Employee_Menu()
     {
@@ -128,7 +128,7 @@ public class AdminMenu : View
         }
     }
 
-    public const string CreateStudent = "Create Student", ViewStudent = "View Student", 
+    public const string CreateStudent = "Create Student", ViewStudent = "View Student",
     UpdateStudent = "Update Student", DeleteStudent = "Delete Student";
     public static void Student_Menu()
     {
@@ -192,7 +192,7 @@ public class AdminMenu : View
                 Admin_Menu();
                 //YA TAN
                 break;
-                //Back
+            //Back
             case Exit:
                 Environment.Exit(0);
                 break;
@@ -227,7 +227,7 @@ public class AdminMenu : View
             case Back:
                 Admin_Menu();
                 break;
-                //Back
+            //Back
             case Exit:
                 Environment.Exit(0);
                 break;
@@ -262,10 +262,20 @@ public class AdminMenu : View
             case Back:
                 Admin_Menu();
                 break;
-                //Back
+            //Back
             case Exit:
                 Environment.Exit(0);
                 break;
         }
+    }
+
+    public string GetOption()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void DoOption(string option)
+    {
+        throw new NotImplementedException();
     }
 }

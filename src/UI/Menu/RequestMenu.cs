@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace UI.Menu;
 
-public class RequestMenu : View
+public class RequestMenu : IView
 {
     public const string CreateRequest = "Create Request", ViewRequest = "View Request",
     UpdateRequest = "Update Request", DeleteRequest = "Delete Request", Back = "Back", Exit = "Exit";
@@ -33,7 +33,7 @@ public class RequestMenu : View
                 // DeleteRequest();
                 break;
             case Back:
-                
+
                 break;
             case Exit:
                 Environment.Exit(0);
@@ -61,7 +61,7 @@ public class RequestMenu : View
                 Request_Teacher_Menu();
                 break;
             case Back:
-                
+
                 break;
             case Exit:
                 Environment.Exit(0);
@@ -97,4 +97,13 @@ public class RequestMenu : View
         }
     }
 
+    public string GetOption()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void DoOption(string option)
+    {
+        throw new NotImplementedException();
+    }
 }

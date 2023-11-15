@@ -6,7 +6,7 @@ using UI.Menu;
 
 namespace UI.Login;
 
-public class SignIn : View
+public class SignIn : IView
 {
     public static User Sign_In()
     {
@@ -24,7 +24,7 @@ public class SignIn : View
                     new TextPrompt<string>("Enter your password:")
                         .PromptStyle("gray")
                         .Secret()));
-                            
+
             (user, message) = logInController.LogIn(username, passwordRequest);
             if (user == null)
             {
@@ -33,10 +33,20 @@ public class SignIn : View
                 ReadKey();
                 continue;
             }
-            
+
         } while (user == null);
         AnsiConsole.MarkupLine($"[green]{message}[/]");
         ReadKey();
         return user;
-    }    
+    }
+
+    public void DoOption(string option)
+    {
+        throw new NotImplementedException();
+    }
+
+    public string GetOption()
+    {
+        throw new NotImplementedException();
+    }
 }
