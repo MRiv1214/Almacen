@@ -34,6 +34,21 @@ public class StudentController
             CareerId = student.CareerId
         });
     }
+    public Student? GetStudentByRegister(byte[] register)
+    {
+        var student = studentRepository?.GetSingleBy(student => student.Register == register);
+        if (student == null)
+        {
+            return null;
+        }
+        return new Student
+        {
+            Register = student.Register,
+            UserId = student.UserId,
+            CareerId = student.CareerId
+        };
+    }
+
     public Student? GetStudentById(long id)
     {
         var student = (studentRepository?.GetById(id)) ?? throw new ArgumentException("Invalid id");
@@ -62,9 +77,9 @@ public class StudentController
             CareerId = student.CareerId
         };
     }
-    public void RemoveStudent(long id)
+    public void RemoveStudent(byte[] id)
     {
-        var student = (studentRepository?.GetById(id)) ?? throw new ArgumentException("Invalid id");
+        var student = (studentRepository?.GetById(BitConverter.ToInt32(id, 0))) ?? throw new ArgumentException("Invalid id");
         studentRepository?.Remove(student);
     }
     public void UpdateStudent(Student student)

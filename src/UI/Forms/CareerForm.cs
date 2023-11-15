@@ -42,6 +42,18 @@ public class CareerForm
         return careerController.GetCareerByName(careerName).CareerId;
     }
 
+    public static void UpdateCareer()
+    {
+        AnsiConsole.Markup("[blue]Update Career[/]\n");
+        var careerId = SelectCareer();
+        var name = AnsiConsole.Ask<string>("Enter career name:");
+        var career = new Career
+        {
+            Name = name,
+        };
+        careerController.UpdateCareer(career);
+    }
+
     public static void RemoveCareer()
     {
         AnsiConsole.Markup("[blue]Remove Career[/]\n");

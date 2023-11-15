@@ -5,6 +5,7 @@ using Almacen.Repository;
 using Almacen.Models.AutoGen;
 using Almacen.Repository.Sqlite;
 using Almacen.UI.Forms;
+using UI.Forms;
 namespace UI.Login;
 
 public class SignUp 
@@ -16,7 +17,7 @@ public class SignUp
         var UserId = UserForm.CreateUserForm();
         long CareerId;
         AnsiConsole.Markup("[blue]Sign Up[/]\n");
-        var typeOfUser = Login.SelectUser();
+        var typeOfUser = SelectUser.SelectUse();
         switch (typeOfUser)
         {
             case UserType.StoreKeeper:

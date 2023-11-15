@@ -17,7 +17,7 @@ public class Menu
     private static readonly StudentController studentController = new (studentRepository);
     public static void MainMenu(User user)
     {
-        var employee = employeeController.GetEmployeeById(user.UserId);
+        var employee = employeeController.GetEmployeeByUserId(user.UserId);
         var student = studentController.GetStudentById(user.UserId);
 
         if (employee == null)
