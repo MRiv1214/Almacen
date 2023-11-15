@@ -25,7 +25,8 @@ public static class UserForm
         };
         var userRepository = new SqliteRepository<User>(AlmacenContext.GetInstance());
         var userController = new UserController(userRepository);
-        var UserId = userController.CreateUser(userDto); 
+        var (UserId,message) = userController.CreateUser(userDto); 
+        AnsiConsole.MarkupLine($"[gray]{message}[/]");
         return UserId;
     }
 }
