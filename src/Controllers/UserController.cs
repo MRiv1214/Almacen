@@ -10,7 +10,7 @@ public class UserController
 {
     AlmacenContext db = AlmacenContext.GetInstance();
 
-    public (long, string) CreateUser(UserDto userDto)
+    public (long, string?) CreateUser(UserDto userDto)
     {
         string message;
         var user = new User
@@ -30,8 +30,7 @@ public class UserController
                 message = "Error creating user";
                 return (0, message);
             }
-            message = "User created successfully";
-            return (user.UserId, message);
+            return (user.UserId, null);
         }
     }
 

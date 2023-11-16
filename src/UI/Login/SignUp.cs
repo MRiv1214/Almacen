@@ -5,43 +5,65 @@ namespace UI.Login;
 public class SignUp : IView
 {
     const long employeeCareerId = 9; // magia we
-    public static long? UserId { get; set; }
+    // public static long? UserId { get; set; }
+    private long CareerId { get; set; }
+    private UserType typeOfUser { get; set; }
 
     public string GetOption()
     {
         ViewManager.ExecuteView(new UserForm());
 
-        long CareerId = ViewManager.data switch {
-            long careerId => careerId,
+        long userId = ViewManager.data switch
+        {
+            long asUserId => asUserId,
+            string error => throw new SystemException(error),
             _ => throw new SystemException("ERROR: Unreachable code")
         };
+
         AnsiConsole.Markup("[blue]Sign Up[/]\n");
 
-        var typeOfUser = SelectUser.SelectUserForm();
+        typeOfUser = SelectUser.SelectUserForm();
 
-        switch (typeOfUser) {
-        case UserType.StoreKeeper:
-            EmployeeForm.CreateEmployee(UserId, employeeCareerId, UserType.StoreKeeper);
-            break;
-        case UserType.Teacher:
-            CareerId = CareerForm.SelectCareer();
-            EmployeeForm.CreateEmployee(UserId, CareerId, UserType.Teacher);
-            break;
-        case UserType.Student:
-            CareerId = CareerForm.SelectCareer();
-            _ = StudentForm.CreateStudent(UserId, CareerId);
-            break;
-        case UserType.Admin:
-            CareerId = CareerForm.SelectCareer();
-            EmployeeForm.CreateEmployee(UserId, CareerId, UserType.Admin);
-            break;
-        }
-        return "";
+        return "chido";
     }
 
     public void DoOption(string option)
     {
-        ViewManager.Next(new SignIn());
+        switch (typeOfUser) {
+        case UserType.StoreKeeper:
+            ViewManager.ExecuteView(new EmployeeForm(userId, employeeCareerId, UserType.StoreKeeper));
+            break;
+        case UserType.Teacher:
+            ViewManager.ExecuteView(new CareerForm());
+            CareerId = ViewManager.data switch
+            {
+                long asCareerId => asCareerId,
+                string error => throw new SystemException(error),
+                _ => throw new SystemException("ERROR: Unreachable code")
+            };
+            ViewManager.ExecuteView(new EmployeeForm(userId, CareerId, UserType.Teacher));
+            break;
+        case UserType.Student:
+            ViewManager.ExecuteView(new CareerForm());
+            CareerId = ViewManager.data switch
+            {
+                long asCareerId => asCareerId,
+                string error => throw new SystemException(error),
+                _ => throw new SystemException("ERROR: Unreachable code")
+            };
+            ViewManager.ExecuteView(new StudentForm(userId, CareerId, UserType.Student));
+            break;
+        case UserType.Admin:
+            ViewManager.ExecuteView(new CareerForm());
+            CareerId = ViewManager.data switch
+            {
+                long asCareerId => asCareerId,
+                string error => throw new SystemException(error),
+                _ => throw new SystemException("ERROR: Unreachable code")
+            };
+            ViewManager.ExecuteView(new EmployeeForm(userId, CareerId, UserType.Admin));
+            break;
+        }
     }
 
 }

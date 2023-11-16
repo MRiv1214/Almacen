@@ -27,7 +27,12 @@ public class UserForm : IView
             Password = SHA256Password.Encrypt(password),
         };
         var (UserId, message) = userController.CreateUser(userDto);
-        SignUp.UserId = UserId;
+        if (message != null) {
+            ViewManager.data = message;
+        } else {
+            ViewManager.data = UserId;
+        }
+
         AnsiConsole.MarkupLine($"[gray]{message}[/]");
         return "";
     }
