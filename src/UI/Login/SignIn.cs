@@ -8,7 +8,7 @@ namespace UI.Login;
 
 public class SignIn : IView
 {
-    AlmacenContext db = AlmacenContext.GetInstance();
+    
 
     public void DoOption(string option)
     {

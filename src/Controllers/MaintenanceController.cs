@@ -6,6 +6,8 @@ namespace Almacen.Controllers;
 
 public class MaintenanceController
 {
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     private readonly IRepository<Maintenance>? maintenanceRepository;
     public MaintenanceController(IRepository<Maintenance>? maintenanceRepository)
     {
@@ -77,4 +79,5 @@ public class MaintenanceController
         maintenanceToUpdate.ScheduleDate = maintenance.ScheduleDate;
         maintenanceRepository?.Update(maintenanceToUpdate);
     }
+    */
 }

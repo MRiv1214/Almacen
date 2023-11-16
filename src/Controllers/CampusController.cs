@@ -6,11 +6,8 @@ namespace Almacen.Controllers;
 
 public class CampusController
 {
-    private readonly IRepository<Campus>? campusRepository;
-    public CampusController(IRepository<Campus>? campusRepository)
-    {
-        this.campusRepository = campusRepository;
-    }
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     public long CreateCampus(CampusDto campusDto)
     {
         var campus = new Campus
@@ -53,5 +50,6 @@ public class CampusController
         campusToUpdate.Name = campus.Name;
         campusRepository?.Update(campusToUpdate);
     }
+    */
         
 }

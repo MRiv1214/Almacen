@@ -5,6 +5,8 @@ namespace Almacen.Controllers;
 
 public class ClassroomController
 {
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     private readonly IRepository<ClassRoom>? classroomRepository;
     public ClassroomController(IRepository<ClassRoom>? classroomRepository)
     {
@@ -51,5 +53,5 @@ public class ClassroomController
         var classroomToUpdate = classroomRepository?.GetById(classroom.ClassroomId)?? throw new ArgumentException("Invalid id");
         classroomToUpdate.Name = classroom.Name;
         classroomRepository?.Update(classroomToUpdate);
-    }
+    }*/
 }

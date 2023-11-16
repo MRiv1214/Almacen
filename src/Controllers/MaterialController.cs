@@ -6,6 +6,8 @@ namespace Almacen.Controllers;
 
 public class MaterialController
 {
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     private readonly IRepository<Material>? materialRepository;
     public MaterialController(IRepository<Material>? materialRepository)
     {
@@ -57,5 +59,5 @@ public class MaterialController
         materialToUpdate.Desc = material.Desc;
         materialRepository?.Update(materialToUpdate);
     }
-        
+    */
 }

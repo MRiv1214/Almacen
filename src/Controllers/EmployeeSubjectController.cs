@@ -6,6 +6,8 @@ namespace Almacen.Controllers;
 
 public class EmployeeSubjectController
 {
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     private readonly IRepository<EmployeeSubject>? employeeSubjectRepository;
     public EmployeeSubjectController(IRepository<EmployeeSubject>? employeeSubjectRepository)
     {
@@ -57,5 +59,6 @@ public class EmployeeSubjectController
         employeeSubjectToUpdate.SubjectId = employeeSubject.SubjectId;
         employeeSubjectRepository?.Update(employeeSubjectToUpdate);
     }
+    */
         
 }

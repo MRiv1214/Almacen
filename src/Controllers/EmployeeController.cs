@@ -5,6 +5,8 @@ namespace Almacen.Controllers;
 
 public class EmployeeController
 {
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     private readonly IRepository<Employee>? employeeRepository;
 
     public EmployeeController(IRepository<Employee>? employeeRepository)
@@ -88,4 +90,5 @@ public class EmployeeController
     {
         throw new NotImplementedException();
     }
+    */
 }

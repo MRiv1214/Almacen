@@ -5,6 +5,8 @@ namespace Almacen.Controllers;
 
 public class SingleSesRequestController
 {
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     private readonly IRepository<SingleSesRequest>? singleSesRequestRepository;
     public SingleSesRequestController(IRepository<SingleSesRequest>? singleSesRequestRepository)
     {
@@ -63,5 +65,5 @@ public class SingleSesRequestController
         singleSesRequestToUpdate.Level = singleSesRequest.Level;
         singleSesRequestToUpdate.Period = singleSesRequest.Period;
         singleSesRequestRepository?.Update(singleSesRequestToUpdate);
-    }
+    }*/
 }

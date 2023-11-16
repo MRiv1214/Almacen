@@ -5,6 +5,8 @@ namespace Almacen.Controllers;
 
 public class EmployeeGroupController
 {
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     private readonly IRepository<EmployeeGroup>? employeeGroupRepository;
 
     public EmployeeGroupController(IRepository<EmployeeGroup>? employeeGroupRepository)
@@ -57,5 +59,5 @@ public class EmployeeGroupController
         employeeGroupToUpdate.GroupId = employeeGroup.GroupId;
         employeeGroupRepository?.Update(employeeGroupToUpdate);
     }
-        
+    */
 }

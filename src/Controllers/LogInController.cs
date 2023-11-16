@@ -14,6 +14,8 @@ namespace src.Controllers;
 
 public class LogInController
 {
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     private readonly IRepository<User>? userRepository;
     public LogInController(IRepository<User>? userRepository)
     {
@@ -34,4 +36,5 @@ public class LogInController
         }
         return (null, "Invalid credentials");
     }
+    */
 }

@@ -4,6 +4,8 @@ using Almacen.Repository;
 namespace Almacen.Controllers;
 public class StudentController
 {
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     private readonly IRepository<Student>? studentRepository;
     public StudentController(IRepository<Student>? studentRepository)
     {
@@ -89,5 +91,6 @@ public class StudentController
         studentToUpdate.CareerId = student.CareerId;
         studentRepository?.Update(studentToUpdate);
     }
+    */
 
 }

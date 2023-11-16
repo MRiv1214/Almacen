@@ -5,11 +5,8 @@ namespace Almacen.Controllers;
 
 public class CareerController
 {
-    private readonly IRepository<Career>? careerRepository;
-    public CareerController(IRepository<Career>? careerRepository)
-    {
-        this.careerRepository = careerRepository;
-    }
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     public long CreateCareer(CareerDto careerDto)
     {
         var career = new Career
@@ -63,4 +60,5 @@ public class CareerController
         careerToUpdate.Name = career.Name;
         careerRepository?.Update(careerToUpdate);
     }
+    */
 }

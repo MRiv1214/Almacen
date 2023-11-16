@@ -5,6 +5,8 @@ namespace Almacen.Controllers;
 
 public class RequestController
 {
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     private readonly IRepository<Request>? requestRepository;
     public RequestController(IRepository<Request>? requestRepository)
     {
@@ -96,4 +98,5 @@ public class RequestController
         requestToUpdate.ControlNum = request.ControlNum;
         requestRepository?.Update(requestToUpdate);
     }
+    */
 }

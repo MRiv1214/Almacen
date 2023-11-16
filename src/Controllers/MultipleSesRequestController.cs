@@ -5,6 +5,8 @@ namespace Almacen.Controllers;
 
 public class MultipleSesRequestController
 {
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     private readonly IRepository<MultipleSesRequest>? mulSesRequestRepository;
     public MultipleSesRequestController(IRepository<MultipleSesRequest>? mulSesRequestRepository)
     {
@@ -72,4 +74,5 @@ public class MultipleSesRequestController
         mulSesRequestToUpdate.Days = mulSesRequest.Days;
         mulSesRequestRepository?.Update(mulSesRequestToUpdate);
     }
+    */
 }

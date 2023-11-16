@@ -5,6 +5,8 @@ namespace Almacen.Controllers;
 
 public class StudentSubjectController
 {
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     private readonly IRepository<StudentSubject>? studentSubjectRepository;
     public StudentSubjectController(IRepository<StudentSubject>? studentSubjectRepository)
     {
@@ -56,4 +58,5 @@ public class StudentSubjectController
         studentSubjectToUpdate.SubjectId = studentSubject.SubjectId;
         studentSubjectRepository?.Update(studentSubjectToUpdate);
     }
+    */
 }

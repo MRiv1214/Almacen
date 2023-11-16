@@ -6,6 +6,8 @@ namespace Almacen.Controllers;
 
 public class StudentGroupController
 {
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     private readonly IRepository<StudentGroup>? studentGroupRepository;
     public StudentGroupController(IRepository<StudentGroup>? studentGroupRepository)
     {
@@ -57,6 +59,5 @@ public class StudentGroupController
         studentGroupToUpdate.GroupId = studentGroup.GroupId;
         studentGroupRepository?.Update(studentGroupToUpdate);
     }
-
-        
+    */
 }

@@ -5,6 +5,8 @@ namespace Almacen.Controllers;
 
 public class SubjectController
 {
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     private readonly IRepository<Subject>? subjectRepository;
     public SubjectController(IRepository<Subject>? subjectRepository)
     {
@@ -53,5 +55,6 @@ public class SubjectController
         subjectToUpdate.Name = subject.Name;
         subjectRepository?.Update(subjectToUpdate);
     }
+    */
 
 }

@@ -5,6 +5,8 @@ namespace Almacen.Controllers;
 
 public class GroupController
 {
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     private readonly IRepository<Group>? groupRepository;
     public GroupController(IRepository<Group>? groupRepository)
     {
@@ -52,5 +54,6 @@ public class GroupController
         groupToUpdate.Name = group.Name;
         groupRepository?.Update(groupToUpdate);
     }
+    */
         
 }

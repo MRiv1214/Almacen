@@ -8,6 +8,8 @@ namespace Almacen.Controllers;
 
 public class UserController
 {
+    AlmacenContext db = AlmacenContext.GetInstance();
+    /*
     public IRepository<User>? userRepository;
 
     public UserController(IRepository<User>? userRepository)
@@ -103,4 +105,5 @@ public class UserController
         }
         return true;
     }
+    */
 }
