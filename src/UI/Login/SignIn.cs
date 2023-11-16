@@ -8,13 +8,8 @@ namespace UI.Login;
 
 public class SignIn : IView
 {
-    private LogInController logInController;
+    private SignInController logInController;
     private User? user = null;
-
-    public void DoOption(string option)
-    {
-        // ViewManager.Next(new UserView(user));
-    }
 
     public string GetOption()
     {
@@ -40,5 +35,10 @@ public class SignIn : IView
         AnsiConsole.MarkupLine($"[green]{message}[/]");
         _ = ReadKey();
         return "";
+    }
+
+    public void DoOption(string option)
+    {
+        // ViewManager.Next(new UserView(user));
     }
 }

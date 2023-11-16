@@ -28,11 +28,9 @@ public class Login : IView
         switch (option)
         {
             case singIn:
-                // user = SignIn.Sign_In();
                 ViewManager.Next(new SignIn());
                 break;
             case signUp:
-                // SignUp.Sign_Up();
                 ViewManager.Next(new SignUp());
                 break;
             case exit:
