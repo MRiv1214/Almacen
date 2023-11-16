@@ -8,6 +8,7 @@ namespace UI;
 public class ViewManager
 {
     public static Stack<IView> viewStack = new();
+    public static object? data;
 
     public ViewManager(IView initialView)
     {
@@ -19,7 +20,7 @@ public class ViewManager
         var option = view.GetOption();
 
         if (!string.IsNullOrEmpty(option)) {
-            view.DoOption(option);
+            data = view.DoOption(option);
         } else {
             viewStack.Pop();
         }
@@ -27,7 +28,7 @@ public class ViewManager
 
     public static void Run()
     {
-        while (viewStack.Count() != 0) {
+        while (viewStack.Count != 0) {
             IView currentView = viewStack.Peek();
             ExecuteView(currentView);
         }
@@ -42,6 +43,4 @@ public class ViewManager
     {
         viewStack.Pop();
     }
-
-
 }
