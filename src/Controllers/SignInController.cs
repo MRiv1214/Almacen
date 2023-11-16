@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace src.Controllers;
 
-public class LogInController
+public class SignInController
 {
     AlmacenContext db = AlmacenContext.GetInstance();
 

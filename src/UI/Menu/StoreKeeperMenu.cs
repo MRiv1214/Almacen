@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace UI.Menu;
-public class StoreKeeper : IView
+public class StoreKeeperMenu : IView
 {
     public const string Request = "Request", Material = "Material",
     MaterialMaintenance = "Material Maintenance", ChangePassword = "Change Password", Exit = "Exit";

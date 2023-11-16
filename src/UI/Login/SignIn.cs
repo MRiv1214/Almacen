@@ -1,6 +1,7 @@
 using Almacen.Helpers;
 using Almacen.Models.AutoGen;
 using Almacen.Repository.Sqlite;
+using SQLitePCL;
 using src.Controllers;
 using UI.Menu;
 
@@ -8,13 +9,8 @@ namespace UI.Login;
 
 public class SignIn : IView
 {
-    private LogInController logInController;
+    private SignInController signInController;
     private User? user = null;
-
-    public void DoOption(string option)
-    {
-        // ViewManager.Next(new UserView(user));
-    }
 
     public string GetOption()
     {
@@ -29,7 +25,7 @@ public class SignIn : IView
                         .PromptStyle("gray")
                         .Secret()));
 
-            (user, message) = logInController.LogIn(username, passwordRequest);
+            (user, message) = signInController.LogIn(username, passwordRequest);
             if (user == null) {
                 AnsiConsole.MarkupLine($"[red]{message}[/]");
                 AnsiConsole.MarkupLine("[red]Press any key to continue...[/]");
@@ -39,6 +35,24 @@ public class SignIn : IView
         } while (user == null);
         AnsiConsole.MarkupLine($"[green]{message}[/]");
         _ = ReadKey();
-        return "";
+        return "ok";
+    }
+
+    public void DoOption(string option)
+    {
+        switch (UserTypeHelper.GetUserType(user!))  {
+            case UserType.Admin:
+                ViewManager.Next(new AdminMenu());
+                break;
+            case UserType.StoreKeeper:
+                ViewManager.Next(new StoreKeeperMenu());
+                break;
+            case UserType.Teacher:
+                ViewManager.Next(new TeacherMenu());
+                break;
+            case UserType.Student:
+                ViewManager.Next(new StudentMenu());
+                break;
+        }
     }
 }

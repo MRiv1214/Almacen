@@ -3,5 +3,5 @@ using Almacen.Models.AutoGen;
 using UI;
 using UI.Login;
 
-ViewManager.Next(new SignIn());
+ViewManager.Next(new Login());
 ViewManager.Run();

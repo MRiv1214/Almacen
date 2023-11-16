@@ -1,3 +1,5 @@
+using Almacen.Models.AutoGen;
+
 namespace Almacen.Helpers;
 
 public enum UserType
@@ -7,4 +9,17 @@ public enum UserType
     Teacher = 3,
     Student = 4,
     
+}
+
+public class UserTypeHelper
+{
+    public static UserType GetUserType(User user)
+    {
+        if (user.Student != null) {
+            return UserType.Student;
+        }
+
+        return (UserType) user.Employee!.UserType!;
+
+    }
 }
