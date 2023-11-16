@@ -8,12 +8,14 @@ public class SignUp : IView
     // public static long? UserId { get; set; }
     private long CareerId { get; set; }
     private UserType typeOfUser { get; set; }
+    private long userId { get; set; }
+
 
     public string GetOption()
     {
         ViewManager.ExecuteView(new UserForm());
 
-        long userId = ViewManager.data switch
+        userId = ViewManager.data switch
         {
             long asUserId => asUserId,
             string error => throw new SystemException(error),
