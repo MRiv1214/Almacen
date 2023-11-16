@@ -6,6 +6,23 @@ namespace Almacen.Controllers;
 public class EmployeeController
 {
     AlmacenContext db = AlmacenContext.GetInstance();
+
+    public long? CreateEmployee(EmployeeDto employeeDto)
+    {
+        var employee = new Employee
+        {
+            Payroll = employeeDto.Payroll,
+            CareerId = employeeDto.CareerId,
+            UserId = employeeDto.UserId,
+            UserType = employeeDto.UserType
+        };
+        db.Employees.Add(employee);
+        if (db.SaveChanges() == 0)
+        {
+            return null;
+        }
+        return employee.UserId;
+    }
     /*
     private readonly IRepository<Employee>? employeeRepository;
 
