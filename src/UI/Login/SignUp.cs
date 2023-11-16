@@ -27,7 +27,9 @@ public class SignUp : IView
 
         AnsiConsole.Markup("[blue]Sign Up[/]\n");
 
-        typeOfUser = SelectUser.SelectUserForm();
+
+        // TODO: Call SelectUserForm inside view manager and retrieve typeOfUser
+        // typeOfUser = SelectUser.SelectUserForm();
 
         return "chido";
     }
@@ -72,7 +74,7 @@ public class SignUp : IView
                 string error => throw new SystemException(error),
                 _ => throw new SystemException("ERROR: Unreachable code")
             };
-            ViewManager.ExecuteView(new EmployeeForm(userId, CareerId, UserType.Admin));
+            ViewManager.ExecuteView(new EmployeeForm());
             break;
         }
     }
