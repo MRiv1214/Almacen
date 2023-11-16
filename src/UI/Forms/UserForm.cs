@@ -20,7 +20,7 @@ public class UserForm : IView
         var name = AnsiConsole.Ask<string>("Enter your name:");
         var lastName = AnsiConsole.Ask<string>("Enter your last name:");
         var password = AnsiConsole.Ask<string>("Enter your password:");
-        var userDto = new UserDto
+        var userDto = new User
         {
             Name = name,
             LastName = lastName,

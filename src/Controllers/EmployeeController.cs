@@ -28,6 +28,8 @@ public class EmployeeController
     {
         return db.Employees;
     }
+
+    publice object Get
     /*
     private readonly IRepository<Employee>? employeeRepository;
 
