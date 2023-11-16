@@ -51,7 +51,7 @@ public class SignIn : IView
             ViewManager.Next(new TeacherMenu());
             break;
         case UserType.Student:
-            ViewManager.Next(new StudentMenu());
+            ViewManager.Next(new StudentMenu(user));
             break;
         }
     }

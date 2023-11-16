@@ -2,12 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Almacen.Models.AutoGen;
 
 namespace UI.Menu;
 
 public class StudentMenu : IView
 {
     public const string Request = "Create Request", ChangePassword = "Change Password", Exit = "Exit";
+    User user;
+
+    public StudentMenu(User user)
+    {
+        this.user = user;
+    }
 
     public string GetOption()
     {
@@ -25,7 +32,7 @@ public class StudentMenu : IView
     {
         switch (option) {
         case Request:
-            ViewManager.Next(new RequestMenu());
+            ViewManager.Next(new RequestMenu(user));
             break;
         case ChangePassword:
             // TODO: Implement ChangePassword

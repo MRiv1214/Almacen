@@ -53,7 +53,7 @@ public class SignUp : IView
                 string error => throw new SystemException(error),
                 _ => throw new SystemException("ERROR: Unreachable code")
             };
-            ViewManager.ExecuteView(new StudentForm(userId, CareerId, UserType.Student));
+            ViewManager.ExecuteView(new StudentForm());
             break;
         case UserType.Admin:
             ViewManager.ExecuteView(new CareerForm());
