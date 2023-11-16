@@ -13,8 +13,8 @@ namespace UI.Forms;
 
 public class EmployeeForm : IView
 {
-    private static readonly SqliteRepository<Employee> employeeRepository = new(AlmacenContext.GetInstance());
-
+    
+    private static EmployeeController employeeController = new();
     public string GetOption()
     {
         throw new NotImplementedException();
