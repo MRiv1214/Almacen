@@ -40,19 +40,19 @@ public class SignIn : IView
 
     public void DoOption(string option)
     {
-        switch (UserTypeHelper.GetUserType(user!))  {
-            case UserType.Admin:
-                ViewManager.Next(new AdminMenu());
-                break;
-            case UserType.StoreKeeper:
-                ViewManager.Next(new StoreKeeperMenu());
-                break;
-            case UserType.Teacher:
-                ViewManager.Next(new TeacherMenu());
-                break;
-            case UserType.Student:
-                ViewManager.Next(new StudentMenu());
-                break;
+        switch (UserTypeHelper.GetUserType(user!)) {
+        case UserType.Admin:
+            ViewManager.Next(new AdminMenu());
+            break;
+        case UserType.StoreKeeper:
+            ViewManager.Next(new StoreKeeperMenu());
+            break;
+        case UserType.Teacher:
+            ViewManager.Next(new TeacherMenu());
+            break;
+        case UserType.Student:
+            ViewManager.Next(new StudentMenu());
+            break;
         }
     }
 }
