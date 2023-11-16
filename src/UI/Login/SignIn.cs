@@ -1,6 +1,7 @@
 using Almacen.Helpers;
 using Almacen.Models.AutoGen;
 using Almacen.Repository.Sqlite;
+using SQLitePCL;
 using src.Controllers;
 using UI.Menu;
 
@@ -34,11 +35,24 @@ public class SignIn : IView
         } while (user == null);
         AnsiConsole.MarkupLine($"[green]{message}[/]");
         _ = ReadKey();
-        return "";
+        return "ok";
     }
 
     public void DoOption(string option)
     {
-        // ViewManager.Next(new UserView(user));
+        switch (UserTypeHelper.GetUserType(user!))  {
+            case UserType.Admin:
+                ViewManager.Next(new AdminMenu());
+                break;
+            case UserType.StoreKeeper:
+                ViewManager.Next(new StoreKeeperMenu());
+                break;
+            case UserType.Teacher:
+                ViewManager.Next(new TeacherMenu());
+                break;
+            case UserType.Student:
+                ViewManager.Next(new StudentMenu());
+                break;
+        }
     }
 }
