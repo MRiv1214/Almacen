@@ -8,7 +8,7 @@ namespace UI.Login;
 
 public class SignIn : IView
 {
-    private SignInController logInController;
+    private SignInController signInController;
     private User? user = null;
 
     public string GetOption()
@@ -24,7 +24,7 @@ public class SignIn : IView
                         .PromptStyle("gray")
                         .Secret()));
 
-            (user, message) = logInController.LogIn(username, passwordRequest);
+            (user, message) = signInController.LogIn(username, passwordRequest);
             if (user == null) {
                 AnsiConsole.MarkupLine($"[red]{message}[/]");
                 AnsiConsole.MarkupLine("[red]Press any key to continue...[/]");
