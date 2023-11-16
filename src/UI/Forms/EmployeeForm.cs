@@ -13,7 +13,13 @@ namespace UI.Forms;
 
 public class EmployeeForm : IView
 {
-    
+    EmployeeForm(long userId, long employeeId, UserType userType)
+    {
+        UserId = userId;
+        EmployeeId = employeeId;
+        UserType = userType;
+    }
+
     private static EmployeeController employeeController = new();
     public string GetOption()
     {
