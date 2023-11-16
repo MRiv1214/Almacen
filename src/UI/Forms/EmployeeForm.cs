@@ -13,25 +13,55 @@ namespace UI.Forms;
 
 public class EmployeeForm : IView
 {
+    private const string createEmployee = "Create Employee", selectEmployee = "Select Employee", updateEmployee = "Update Employee", removeEmployee = "Remove Employee", back = "Back";
     private static EmployeeController employeeController = new();
     private static UserController userController = new();
     private Employee? employee;
 
     public string GetOption()
     {
-        throw new NotImplementedException();
+        var options = new List<string> {
+            createEmployee, selectEmployee, updateEmployee, removeEmployee, back
+        };
+        var option = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("Select a option")
+                .PageSize(5)
+                .MoreChoicesText("[grey](Move up and down to reveal more options)[/]")
+                .AddChoices(options));
+        
+        return options[options.IndexOf(option)];
     }
 
     public void DoOption(string option)
     {
-        throw new NotImplementedException();
+        switch (option)
+        {
+            case createEmployee:
+                CreateEmployee();
+                break;
+            case selectEmployee:
+                SelectEmployee();
+                break;
+            case updateEmployee:
+                UpdateEmployee();
+                break;
+            case removeEmployee:
+                // RemoveEmployee();
+                break;
+            case back:
+                ViewManager.Previous();
+                break;
+            default:
+                throw new SystemException("ERROR: Unreachable code");
+        }
     }
-    private void CreateEmployee()
+    private static void CreateEmployee()
     {
         AnsiConsole.Markup("[blue]Create Employee[/]\n");
         // Select Type of User
         ViewManager.ExecuteView(new SelectUser());
-        
+
         var data = ViewManager.data switch
         {
             (UserType asUserType,long careerId) => (asUserType, careerId),
@@ -53,8 +83,9 @@ public class EmployeeForm : IView
         userController.CreateUser(user);
     }
 
-    private void SelectEmployee()
+    private static void SelectEmployee()
     {
+
         /*
         var employees = userController.GetAllUsers();
         var employeesPayroll = new List<string>();
@@ -71,7 +102,7 @@ public class EmployeeForm : IView
         */
     }
 
-    private void UpdateEmployee()
+    private static void UpdateEmployee()
     {
         /*
         AnsiConsole.Markup("[blue]Update Employee[/]\n");

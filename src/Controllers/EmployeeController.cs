@@ -28,7 +28,11 @@ public class EmployeeController
     {
         return db.Employees;
     }
-
+    public Employee? GetEmployeeByPayroll(string payroll)
+    {
+        return db.Employees.FirstOrDefault(x => x.Payroll == payroll);
+    }
+    
     /*
     private readonly IRepository<Employee>? employeeRepository;
 
