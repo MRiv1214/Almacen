@@ -13,14 +13,20 @@ namespace UI.Forms;
 
 public class EmployeeForm : IView
 {
-    EmployeeForm(long userId, long employeeId, UserType userType)
+    private static EmployeeController employeeController = new();
+    private long UserId { get; set; }
+    private string Payroll { get; set; }
+    private UserType UserType { get; set; }
+    private long CareerId { get; set; }
+
+    public EmployeeForm(long userId, UserType userType, long careerId)
     {
         UserId = userId;
-        EmployeeId = employeeId;
+        Payroll = "";
         UserType = userType;
+        CareerId = careerId;
     }
 
-    private static EmployeeController employeeController = new();
     public string GetOption()
     {
         throw new NotImplementedException();
@@ -29,6 +35,35 @@ public class EmployeeForm : IView
     public void DoOption(string option)
     {
         throw new NotImplementedException();
+    }
+    private void CreateEmployee()
+    {
+        AnsiConsole.Markup("[blue]Create Employee[/]\n");
+        Payroll = AnsiConsole.Ask<string>("Enter your payroll:");
+        employeeController.CreateEmployee(UserId, Payroll, CareerId, UserType);
+    }
+
+    private void SelectEmployee()
+    {
+        var employees = employeeController.GetAllEmployees();
+        var employeesPayroll = new List<string>();
+        foreach (var employee in employees)
+        {
+            employeesPayroll.Add(employee.Payroll!);
+        }
+        Payroll = AnsiConsole.Prompt(
+        new SelectionPrompt<string>()
+            .Title("Select a employee")
+            .PageSize(10)
+            .MoreChoicesText("[grey](Move up and down to reveal more employees)[/]")
+            .AddChoices(employeesPayroll));
+    }
+
+    private void UpdateEmployee()
+    {
+        AnsiConsole.Markup("[blue]Update Employee[/]\n");
+        Payroll = AnsiConsole.Ask<string>("Enter your payroll:");
+        employeeController.UpdateEmployee(UserId, Payroll, CareerId, UserType);
     }
 
     // internal static void CreateEmployee(long userId, long careerId, UserType userType)

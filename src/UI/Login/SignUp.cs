@@ -2,6 +2,7 @@ using Almacen.Helpers;
 using UI.Forms;
 namespace UI.Login;
 
+
 public class SignUp : IView
 {
     const long employeeCareerId = 9; // magia we
