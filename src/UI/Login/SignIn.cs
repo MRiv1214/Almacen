@@ -14,7 +14,6 @@ public class SignIn : IView
 
     public string GetOption()
     {
-        string message;
         do {
             Clear();
             AnsiConsole.Markup("[blue]Sign In[/]\n");
@@ -25,15 +24,16 @@ public class SignIn : IView
                         .PromptStyle("gray")
                         .Secret()));
 
-            (user, message) = signInController.LogIn(username, passwordRequest);
-            if (user == null) {
+            var (recievedUser, message) = signInController.LogIn(username, passwordRequest);
+            if (recievedUser == null) {
                 AnsiConsole.MarkupLine($"[red]{message}[/]");
                 AnsiConsole.MarkupLine("[red]Press any key to continue...[/]");
                 _ = ReadKey();
                 continue;
             }
+            user = recievedUser;
         } while (user == null);
-        AnsiConsole.MarkupLine($"[green]{message}[/]");
+        // AnsiConsole.MarkupLine($"[green]{message}[/]");
         _ = ReadKey();
         return "ok";
     }
