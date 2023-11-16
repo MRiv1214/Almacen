@@ -8,15 +8,16 @@ namespace UI.Login;
 
 public class SignIn : IView
 {
-    
+    private LogInController logInController;
+    private User? user = null;
 
     public void DoOption(string option)
     {
+        // ViewManager.Next(new UserView(user));
     }
 
     public string GetOption()
     {
-        User? user;
         string message;
         do {
             Clear();
@@ -28,18 +29,16 @@ public class SignIn : IView
                         .PromptStyle("gray")
                         .Secret()));
 
-            // (user, message) = logInController.LogIn(username, passwordRequest);
-            // if (user == null) {
-            //     AnsiConsole.MarkupLine($"[red]{message}[/]");
-            //     AnsiConsole.MarkupLine("[red]Press any key to continue...[/]");
-            //     ReadKey();
-            //     continue;
-            // }
-            //
-
-        } while (true);
+            (user, message) = logInController.LogIn(username, passwordRequest);
+            if (user == null) {
+                AnsiConsole.MarkupLine($"[red]{message}[/]");
+                AnsiConsole.MarkupLine("[red]Press any key to continue...[/]");
+                _ = ReadKey();
+                continue;
+            }
+        } while (user == null);
         AnsiConsole.MarkupLine($"[green]{message}[/]");
-        ReadKey();
+        _ = ReadKey();
         return "";
     }
 }
