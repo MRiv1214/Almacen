@@ -21,7 +21,7 @@ public class StudentMenu : IView
         var userSelection = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                 .Title("Select an option")
-                .PageSize(2)
+                .PageSize(3)
                 .AddChoices(new[] {
                     Request, ChangePassword, Exit
                     }));

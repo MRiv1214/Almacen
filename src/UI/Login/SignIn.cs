@@ -9,7 +9,7 @@ namespace UI.Login;
 
 public class SignIn : IView
 {
-    private SignInController signInController;
+    private SignInController signInController = new();
     private User? user = null;
 
     public string GetOption()
