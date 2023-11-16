@@ -1,6 +1,10 @@
 using Almacen.Helpers;
 using UI.Forms;
+using Almacen.Models;
+using Almacen.Models.AutoGen;
+using Almacen.Controllers;
 namespace UI.Login;
+
 
 public class SignUp : IView
 {
@@ -9,7 +13,6 @@ public class SignUp : IView
     private long CareerId { get; set; }
     private UserType typeOfUser { get; set; }
     private long userId { get; set; }
-
 
     public string GetOption()
     {
@@ -33,7 +36,13 @@ public class SignUp : IView
     {
         switch (typeOfUser) {
         case UserType.StoreKeeper:
-            ViewManager.ExecuteView(new EmployeeForm(userId, employeeCareerId, UserType.StoreKeeper));
+            ViewManager.ExecuteView(new EmployeeForm());
+            CareerId = ViewManager.data switch
+            {
+                long asCareerId => asCareerId,
+                string error => throw new SystemException(error),
+                _ => throw new SystemException("ERROR: Unreachable code")
+            };
             break;
         case UserType.Teacher:
             ViewManager.ExecuteView(new CareerForm());
@@ -43,7 +52,7 @@ public class SignUp : IView
                 string error => throw new SystemException(error),
                 _ => throw new SystemException("ERROR: Unreachable code")
             };
-            ViewManager.ExecuteView(new EmployeeForm(userId, CareerId, UserType.Teacher));
+            ViewManager.ExecuteView(new EmployeeForm());
             break;
         case UserType.Student:
             ViewManager.ExecuteView(new CareerForm());

@@ -10,8 +10,8 @@ namespace UI.Forms;
 public class SelectUser : IView
 {
     public const string gStoreKeeper = "StoreKeeper", gTeacher = "Teacher", gStudent = "Student", gAdmin = "Admin";
-
-    public static UserType SelectUserForm()
+    
+    public static void SelectUserForm()
     {
         Clear();
         var typeOfUser = AnsiConsole.Prompt(
@@ -30,7 +30,6 @@ public class SelectUser : IView
             gStudent => UserType.Student,
             _ => throw new ArgumentException("Invalid type of user")
         };
-        return userType;
     }
 
     public void DoOption(string option)

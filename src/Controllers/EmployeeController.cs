@@ -1,20 +1,21 @@
 using Almacen.Models.AutoGen;
 using Almacen.Models.Dtos;
 using Almacen.Repository;
+using Almacen.Helpers;
 namespace Almacen.Controllers;
 
 public class EmployeeController
 {
     AlmacenContext db = AlmacenContext.GetInstance();
 
-    public long? CreateEmployee(EmployeeDto employeeDto)
+    public long? CreateEmployee(long userId, string employeeId, long careerId,   UserType userType)
     {
         var employee = new Employee
         {
-            Payroll = employeeDto.Payroll,
-            CareerId = employeeDto.CareerId,
-            UserId = employeeDto.UserId,
-            UserType = employeeDto.UserType
+            Payroll = employeeId,
+            UserId = userId,
+            CareerId = careerId,
+            UserType = (long)userType
         };
         db.Employees.Add(employee);
         if (db.SaveChanges() == 0)
@@ -23,6 +24,11 @@ public class EmployeeController
         }
         return employee.UserId;
     }
+    public IEnumerable<Employee> GetAllEmployees()
+    {
+        return db.Employees;
+    }
+
     /*
     private readonly IRepository<Employee>? employeeRepository;
 

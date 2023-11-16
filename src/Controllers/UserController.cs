@@ -10,7 +10,7 @@ public class UserController
 {
     AlmacenContext db = AlmacenContext.GetInstance();
 
-    public (long, string?) CreateUser(UserDto userDto)
+    public (long, string?) CreateUser(User userDto)
     {
         string message;
         var user = new User
