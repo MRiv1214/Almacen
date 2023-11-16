@@ -20,7 +20,7 @@ public class ViewManager
         var option = view.GetOption();
 
         if (!string.IsNullOrEmpty(option)) {
-            data = view.DoOption(option);
+            view.DoOption(option);
         } else {
             viewStack.Pop();
         }

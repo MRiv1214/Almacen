@@ -16,7 +16,7 @@ public interface IView
 
     /// <summary>
     /// Performs option selected by <c>GetOption</c>.
-    /// Saves result in <c>ViewManager.data</c> field.
+    /// Results must be saved on <c>ViewManager.data</c> field.
     /// </summary>
-    public object? DoOption(string option);
+    public void DoOption(string option);
 }

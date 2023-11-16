@@ -15,7 +15,7 @@ public class UserForm : IView
 {
     private UserController userController = new();
 
-    public static string GetOption()
+    public string GetOption()
     {
         var name = AnsiConsole.Ask<string>("Enter your name:");
         var lastName = AnsiConsole.Ask<string>("Enter your last name:");
