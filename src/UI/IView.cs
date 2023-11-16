@@ -8,7 +8,14 @@ namespace UI;
 
 public interface IView
 {
+    /// <summary>
+    /// Returns selected option.
+    /// If option is null or whitespace it goes back to previous view.
+    /// </summary>
     public string GetOption();
-    public void DoOption(string option);
 
+    /// <summary>
+    /// Performs option selected by <c>GetOption</c>.
+    /// </summary>
+    public void DoOption(string option);
 }

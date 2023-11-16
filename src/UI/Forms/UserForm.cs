@@ -7,12 +7,15 @@ using Almacen.Models.Dtos;
 using Almacen.Helpers;
 using Almacen.Repository.Sqlite;
 using Almacen.Models.AutoGen;
+using UI.Login;
 
 namespace UI.Forms;
 
 public class UserForm : IView
 {
-    public static long CreateUserForm()
+    private UserController userController = new();
+
+    public static string GetOption()
     {
         var name = AnsiConsole.Ask<string>("Enter your name:");
         var lastName = AnsiConsole.Ask<string>("Enter your last name:");
@@ -23,20 +26,15 @@ public class UserForm : IView
             LastName = lastName,
             Password = SHA256Password.Encrypt(password),
         };
-        var userRepository = new SqliteRepository<User>(AlmacenContext.GetInstance());
-        var userController = new UserController(userRepository);
         var (UserId, message) = userController.CreateUser(userDto);
+        SignUp.UserId = UserId;
         AnsiConsole.MarkupLine($"[gray]{message}[/]");
-        return UserId;
+        return "";
     }
 
     public void DoOption(string option)
     {
-        throw new NotImplementedException();
+        throw new SystemException("ERROR: Unreachable code");
     }
 
-    public string GetOption()
-    {
-        throw new NotImplementedException();
-    }
 }

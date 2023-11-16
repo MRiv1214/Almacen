@@ -4,18 +4,19 @@ namespace UI.Login;
 
 public class SignUp : IView
 {
-    //Console Sign Up
-    public static void Sign_Up()
+    const long employeeCarrerId = 9; // magia we
+    public static long? UserId { get; set; }
+
+    public string GetOption()
     {
-        // login with user and password to create new user
-        var UserId = UserForm.CreateUserForm();
+        ViewManager.ExecuteView(new UserForm());
         long CareerId;
         AnsiConsole.Markup("[blue]Sign Up[/]\n");
         var typeOfUser = SelectUser.SelectUserForm();
         switch (typeOfUser)
         {
             case UserType.StoreKeeper:
-                EmployeeForm.CreateEmployee(UserId, 9, UserType.StoreKeeper);
+                EmployeeForm.CreateEmployee(UserId, employeeCarrerId, UserType.StoreKeeper);
                 break;
             case UserType.Teacher:
                 CareerId = CareerForm.SelectCareer();
@@ -23,22 +24,19 @@ public class SignUp : IView
                 break;
             case UserType.Student:
                 CareerId = CareerForm.SelectCareer();
-                StudentForm.CreateStudent(UserId, CareerId);
+                _ = StudentForm.CreateStudent(UserId, CareerId);
                 break;
             case UserType.Admin:
                 CareerId = CareerForm.SelectCareer();
                 EmployeeForm.CreateEmployee(UserId, CareerId, UserType.Admin);
                 break;
         }
+        return "";
     }
 
     public void DoOption(string option)
     {
-        throw new NotImplementedException();
+        ViewManager.Next(new SignIn());
     }
 
-    public string GetOption()
-    {
-        throw new NotImplementedException();
-    }
 }

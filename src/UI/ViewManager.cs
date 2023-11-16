@@ -14,21 +14,22 @@ public class ViewManager
         Next(view: initialView);
     }
 
+    public static void ExecuteView(IView view)
+    {
+        var option = view.GetOption();
+
+        if (!string.IsNullOrEmpty(option)) {
+            view.DoOption(option);
+        } else {
+            viewStack.Pop();
+        }
+    }
+
     public static void Run()
     {
-        while (viewStack.Count() != 0)
-        {
+        while (viewStack.Count() != 0) {
             IView currentView = viewStack.Peek();
-            //currentView.Show();
-            var option = currentView.GetOption();
-            if (!string.IsNullOrEmpty(option))
-            {
-                currentView.DoOption(option);
-            }
-            else
-            {
-                viewStack.Pop();
-            }
+            ExecuteView(currentView);
         }
     }
 
@@ -36,5 +37,11 @@ public class ViewManager
     {
         viewStack.Push(view);
     }
+
+    public static void Previous()
+    {
+        viewStack.Pop();
+    }
+
 
 }

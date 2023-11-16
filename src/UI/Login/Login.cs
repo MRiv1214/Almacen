@@ -10,23 +10,6 @@ public class Login : IView
     //Console Login
     public User? user = null;
 
-    void IView.DoOption(string option)
-    {
-        switch (option)
-        {
-            case singIn:
-                // user = SignIn.Sign_In();
-                ViewManager.Next(new SignIn());
-                break;
-            case signUp:
-                SignUp.Sign_Up();
-                break;
-            case exit:
-                Environment.Exit(0);
-                break;
-        }
-    }
-
     string IView.GetOption()
     {
         Clear();
@@ -39,4 +22,24 @@ public class Login : IView
         }));
         return userSelection;
     }
+
+    void IView.DoOption(string option)
+    {
+        switch (option)
+        {
+            case singIn:
+                // user = SignIn.Sign_In();
+                ViewManager.Next(new SignIn());
+                break;
+            case signUp:
+                // SignUp.Sign_Up();
+                ViewManager.Next(new SignUp());
+                break;
+            case exit:
+                Environment.Exit(0);
+                break;
+        }
+        return; //"tu mama we";
+    }
+
 }
